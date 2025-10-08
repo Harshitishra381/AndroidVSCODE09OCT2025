@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Default Suite]]]]]]]]]]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="Trial.MyAnnotationTransformer"/>
+    <listener class-name="Trial.RetryListener"/>
+    <listener class-name="Trial.TestResultCleanerListener"/>
+  </listeners>
+  <test thread-count="5" name="Default Test(failed)(failed)(failed)(failed)(failed)(failed)(failed)(failed)(failed)(failed)">
+    <classes>
+      <class name="Trial.SideNav_Script">
+        <methods>
+          <include name="SideNavCreateBtnReel20"/>
+          <include name="ChangeCommunicationEmailId26"/>
+          <include name="SidenNavImageupload7"/>
+          <include name="day7buypro338"/>
+          <include name="GooglePlayCouponRedeem21"/>
+          <include name="SideNavCouponPageTopCarousal23"/>
+          <include name="day7buypro37"/>
+          <include name="SideNavBuyyPro24"/>
+          <include name="SidenNavOffersTask10"/>
+          <include name="SideNavContest5"/>
+          <include name="RedeemedSectionBackRedirection40"/>
+          <include name="SidenNavChangeLocation14"/>
+          <include name="SidenNavcChangeContentlocaleMarathi31"/>
+          <include name="setup"/>
+          <include name="CreatebtnIRL1"/>
+          <include name="SidenNavchnageFavoriteGame3"/>
+          <include name="SidenNavcChangeContentlocaleHindi33"/>
+          <include name="NormalLiveStream18"/>
+          <include name="SidenNavcChangeContentlocaleBengali30"/>
+          <include name="SidenNavcChangeContentlocaleKannda32"/>
+          <include name="SidenNavWatccchHistory12"/>
+          <include name="SidenNavDataSaver4"/>
+          <include name="SideNavRooterShop25"/>
+          <include name="tearDown"/>
+          <include name="SidenNavcChangeContentlocaleTelugu29"/>
+          <include name="SidenNavInviteAndWin11"/>
+          <include name="SideNavRewards9"/>
+          <include name="SidenNavDarkTheme17"/>
+          <include name="RedeemCouponCopy22"/>
+          <include name="SidenNavCreateVideo2"/>
+          <include name="SidenNavcChangeContentlocaleTamil28"/>
+          <include name="SidenNavcChangeProfileName13"/>
+          <include name="SidenNavlightTheme16"/>
+          <include name="SidenNavChangeBio15"/>
+          <include name="day1buypro36"/>
+          <include name="SideNavcreateBtn6"/>
+          <include name="SideNavCoinandDiamondlog27"/>
+          <include name="DonationLeaderbaord39"/>
+        </methods>
+      </class> <!-- Trial.SideNav_Script -->
+      <class name="Trial.Video_Script">
+        <methods>
+          <include name="VideoPlayerTimerMuteButton18"/>
+          <include name="VideoqualityChangeAfterRotation23"/>
+          <include name="VideoPlayerForwardBackward6"/>
+          <include name="VideoWatcchAndWinCoinsDetailsandRecommededVideo8"/>
+          <include name="videoqualitychnage15"/>
+          <include name="VideoPlayerComment7"/>
+          <include name="VideoPIPtofullscreentest2"/>
+          <include name="tearDown"/>
+          <include name="SearchVideoRotate22"/>
+          <include name="setup"/>
+          <include name="searchvideoplayerLikeWatchNWin11"/>
+          <include name="Videoplayerplaybackspeed17"/>
+          <include name="SearcchVideoplayerComment10"/>
+          <include name="VideoMiniPlayerTabSwittch9"/>
+          <include name="MinecraftSearchVideolikecommentandsharecount19"/>
+          <include name="Videoplayerrotate14"/>
+          <include name="MinecraftSearchVideoTest13"/>
+          <include name="Videotagsandtimer191"/>
+          <include name="IRLSearchVideoTest12"/>
+          <include name="VideomuteUnmuteAfterScreenRtoatatE20"/>
+          <include name="SearchVideoPIP21"/>
+          <include name="VideomuteunmuteafterPIP4"/>
+          <include name="VideoQualitychangeafterPIP5"/>
+          <include name="VideominiPlayertofullAndPlaybackSpeedChange01"/>
+          <include name="Videoprogress24"/>
+          <include name="Videoplayermuteunute16"/>
+        </methods>
+      </class> <!-- Trial.Video_Script -->
+      <class name="Trial.LiveStream_script">
+        <methods>
+          <include name="liveplayershare12"/>
+          <include name="livestreamGiftstickerINLANDSCAPE17"/>
+          <include name="tearDown"/>
+          <include name="ProRecordedStreamForProUsers29"/>
+          <include name="ProBagesTet18"/>
+          <include name="LivebuttonotimeronstreamINSEARCH11"/>
+          <include name="ProCreatorlist21"/>
+          <include name="liveplayerFanrank4"/>
+          <include name="LiveMiniplayertabswittch1"/>
+          <include name="livestreamGiftsticker15"/>
+          <include name="livestreaminetractivepolls7"/>
+          <include name="setup"/>
+          <include name="livestreaminetractivemoreIRL8"/>
+          <include name="MissedTabContentisplaying26"/>
+          <include name="ProStreamOpenedFanRank22"/>
+          <include name="FreePreviewTimerForPro31"/>
+          <include name="liveplayercomennt3"/>
+          <include name="ProCreatorTagoProfileTest20"/>
+          <include name="MidtioerRecordedStreamForProUsers30"/>
+          <include name="Protabliveplayerrortate23"/>
+          <include name="Livebuttonotimeronstreaminprotab10"/>
+          <include name="livestreamemojis13"/>
+          <include name="ProStreamPIP24"/>
+          <include name="liveStreaRecommendedFeed14"/>
+          <include name="GiveawaysContentisplaying27"/>
+          <include name="livestreamwatchandwin6"/>
+          <include name="ProStreamComment19"/>
+          <include name="DataCheckHomePage25"/>
+          <include name="livestreamwatccanwin2"/>
+          <include name="ProCreatorTagOnJonthanTest28"/>
+          <include name="liveStreamfreeStickerDonate16"/>
+        </methods>
+      </class> <!-- Trial.LiveStream_script -->
+      <class name="Trial.Reel_Script">
+        <methods>
+          <include name="ReelDelete15"/>
+          <include name="ReelTestonSeachAllTab11"/>
+          <include name="ReelsTestAfterTabsSwitch7"/>
+          <include name="ReelUploadNewReel16"/>
+          <include name="ReelTestAfterVideoMiniPlayer12"/>
+          <include name="OthersProfileReellTest6"/>
+          <include name="SelfProfieReelTest3"/>
+          <include name="HorizontalReelTestAfterMiniPlayer14"/>
+          <include name="ReelTestAfterLiveStreamMiniPlayer13"/>
+          <include name="SearchReelPlayingOrNot22"/>
+          <include name="CentralReelTabReelPlayingOrNot21"/>
+          <include name="ReelsftercomingfromBackground19"/>
+          <include name="OthersPofileReelScroll10"/>
+          <include name="HorizontalReelTabTest5"/>
+          <include name="CentralReelMuteUnmute4"/>
+          <include name="tearDown"/>
+          <include name="ReelsAfterComingFromBackgroundTooLong20"/>
+          <include name="ReelOpenfromVideoRecommendationse17"/>
+          <include name="setup"/>
+          <include name="CentralReelsScroll50TimesAndTest8"/>
+          <include name="SearchReelTest2"/>
+          <include name="Reelsftertabswitch18"/>
+          <include name="CentralReelTest1"/>
+        </methods>
+      </class> <!-- Trial.Reel_Script -->
+    </classes>
+  </test> <!-- Default Test(failed)(failed)(failed)(failed)(failed)(failed)(failed)(failed)(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Default Suite]]]]]]]]]] -->

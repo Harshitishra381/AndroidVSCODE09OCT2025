@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Default Suite]]]]]]]]" guice-stage="DEVELOPMENT">
+  <listeners>
+    <listener class-name="Trial.MyAnnotationTransformer"/>
+    <listener class-name="Trial.RetryListener"/>
+    <listener class-name="Trial.TestResultCleanerListener"/>
+  </listeners>
+  <test thread-count="5" name="Default Test(failed)(failed)(failed)(failed)(failed)(failed)(failed)(failed)">
+    <classes>
+      <class name="Trial.Video_Script">
+        <methods>
+          <include name="MinecraftSearchVideolikecommentandsharecount19"/>
+          <include name="MinecraftSearchVideoTest13"/>
+          <include name="tearDown"/>
+          <include name="IRLSearchVideoTest12"/>
+          <include name="setup"/>
+          <include name="SearchVideoPIP21"/>
+          <include name="searchvideoplayerLikeWatchNWin11"/>
+          <include name="SearcchVideoplayerComment10"/>
+        </methods>
+      </class> <!-- Trial.Video_Script -->
+      <class name="Trial.LiveStream_script">
+        <methods>
+          <include name="tearDown"/>
+          <include name="ProRecordedStreamForProUsers29"/>
+          <include name="setup"/>
+          <include name="LivebuttonotimeronstreamINSEARCH11"/>
+          <include name="liveplayerFanrank4"/>
+          <include name="ProCreatorTagoProfileTest20"/>
+          <include name="ProCreatorTagOnJonthanTest28"/>
+          <include name="ProStreamOpenedFanRank22"/>
+          <include name="Protabliveplayerrortate23"/>
+          <include name="MidtioerRecordedStreamForProUsers30"/>
+        </methods>
+      </class> <!-- Trial.LiveStream_script -->
+      <class name="Trial.Reel_Script">
+        <methods>
+          <include name="ReelDelete15"/>
+          <include name="ReelTestonSeachAllTab11"/>
+          <include name="ReelUploadNewReel16"/>
+          <include name="OthersProfileReellTest6"/>
+          <include name="SelfProfieReelTest3"/>
+          <include name="SearchReelPlayingOrNot22"/>
+          <include name="CentralReelTabReelPlayingOrNot21"/>
+          <include name="ReelsftercomingfromBackground19"/>
+          <include name="OthersPofileReelScroll10"/>
+          <include name="ReelsAfterComingFromBackgroundTooLong20"/>
+          <include name="tearDown"/>
+          <include name="setup"/>
+          <include name="ReelOpenfromVideoRecommendationse17"/>
+          <include name="SearchReelTest2"/>
+          <include name="Reelsftertabswitch18"/>
+        </methods>
+      </class> <!-- Trial.Reel_Script -->
+    </classes>
+  </test> <!-- Default Test(failed)(failed)(failed)(failed)(failed)(failed)(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Default Suite]]]]]]]] -->

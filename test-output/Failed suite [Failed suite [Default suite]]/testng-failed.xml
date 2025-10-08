@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Failed suite [Failed suite [Default suite]]]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Default test(failed)(failed)(failed)">
+    <classes>
+      <class name="Trial.Subscription_Script">
+        <methods>
+          <include name="NonProNewUserHomepageTabsDataCheck21"/>
+          <include name="tearDown"/>
+          <include name="NewUserSubscription365DayPack20"/>
+          <include name="NewUserSubscription30DayPack18"/>
+          <include name="setup"/>
+          <include name="CreateWalletForNewUser22"/>
+          <include name="LoginWithNewUser15"/>
+          <include name="NewUserSubscription180DaysPack19"/>
+          <include name="NewUserSubscription7DayPack17"/>
+          <include name="NewUserSubscription1DayPack16"/>
+          <include name="SubscriptionPurchasehistoryandTokenValidation9"/>
+        </methods>
+      </class> <!-- Trial.Subscription_Script -->
+    </classes>
+  </test> <!-- Default test(failed)(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Failed suite [Default suite]]] -->

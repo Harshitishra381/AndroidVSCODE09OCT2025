@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Suite]]]]]]]" guice-stage="DEVELOPMENT">
+  <test thread-count="5" name="Test(failed)(failed)(failed)(failed)(failed)(failed)(failed)">
+    <classes>
+      <class name="Trial.Video_Script">
+        <methods>
+          <include name="tearDown"/>
+          <include name="searchvideoplayerLikeWatchNWin11"/>
+          <include name="VideoWatcchAndWinCoinsDetailsandRecommededVideo8"/>
+          <include name="setup2"/>
+        </methods>
+      </class> <!-- Trial.Video_Script -->
+      <class name="Trial.ContestPage_Script">
+        <methods>
+          <include name="setup2"/>
+          <include name="tearDown"/>
+          <include name="contestDatafunctionaltest1"/>
+        </methods>
+      </class> <!-- Trial.ContestPage_Script -->
+      <class name="Trial.InAppNotification_Script">
+        <methods>
+          <include name="setup2"/>
+          <include name="InAppNotificationActivityTab3"/>
+          <include name="tearDown"/>
+        </methods>
+      </class> <!-- Trial.InAppNotification_Script -->
+      <class name="Trial.LiveStream_script">
+        <methods>
+          <include name="tearDown"/>
+          <include name="livestreamwatchandwin6"/>
+          <include name="liveplayerFanrank4"/>
+          <include name="livestreamwatccanwin2"/>
+          <include name="setup2"/>
+        </methods>
+      </class> <!-- Trial.LiveStream_script -->
+      <class name="Trial.SelfProfile_Script">
+        <methods>
+          <include name="SelfProfieReelLandingTest8"/>
+          <include name="tearDown"/>
+          <include name="setup2"/>
+        </methods>
+      </class> <!-- Trial.SelfProfile_Script -->
+      <class name="Trial.Coin_Count">
+        <methods>
+          <include name="tearDown"/>
+          <include name="CoinsCount02"/>
+          <include name="setup2"/>
+        </methods>
+      </class> <!-- Trial.Coin_Count -->
+      <class name="Trial.Search_Script">
+        <methods>
+          <include name="tearDown"/>
+          <include name="setup2"/>
+          <include name="SearchVideoPlayerLikeWatchNWin10"/>
+        </methods>
+      </class> <!-- Trial.Search_Script -->
+    </classes>
+  </test> <!-- Test(failed)(failed)(failed)(failed)(failed)(failed)(failed) -->
+</suite> <!-- Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Suite]]]]]]] -->
