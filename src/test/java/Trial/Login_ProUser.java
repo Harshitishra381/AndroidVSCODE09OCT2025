@@ -2,22 +2,9 @@ package Trial;
 
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import com.google.common.collect.ImmutableMap;
-
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.PullsFiles;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.KeyEvent;
 import org.openqa.selenium.By;

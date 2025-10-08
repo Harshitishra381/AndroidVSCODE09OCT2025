@@ -3,17 +3,10 @@ package Trial;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
-
-import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
-import java.util.concurrent.TimeUnit;
-
 import org.openqa.selenium.*;
-import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 
