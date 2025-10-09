@@ -1,5 +1,8 @@
 package Trial;
 
+import java.net.MalformedURLException;
+
+import org.openqa.selenium.By;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
@@ -9,8 +12,6 @@ import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
-import org.openqa.selenium.*;
-import java.net.MalformedURLException;
 
 public class LiveStream_script<MobileElement, Rotatable> extends Functions {
 

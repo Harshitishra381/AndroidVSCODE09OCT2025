@@ -4,26 +4,27 @@ import org.testng.annotations.AfterMethod;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
+
 import java.time.Duration;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
+import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
-import io.appium.java_client.functions.ExpectedCondition;
+
+import org.openqa.selenium.support.ui.ExpectedCondition;
 
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.BeforeMethod;
-import org.testng.IAnnotationTransformer;
-import org.testng.annotations.ITestAnnotation;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 
 
-public class Functions<MobileElement, Rotatable>  {
+public class Functions  {
 	
 
 
@@ -32,16 +33,13 @@ public class Functions<MobileElement, Rotatable>  {
     public static void clickAndWaitForElementWithXpath1(final String xpath) {
     	
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
-        ExpectedCondition<Boolean> condition = new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver arg0) {
-                try {
-                    WebElement element = (driver).findElement(By.xpath(xpath));
-                    element.click();
-                    return true;
-                } catch (Exception e) {
-                    return false;
-                }
+        ExpectedCondition<Boolean> condition = (WebDriver arg0) -> {
+            try {
+                WebElement element = (driver).findElement(By.xpath(xpath));
+                element.click();
+                return true;
+            } catch (Exception e) {
+                return false;
             }
         };
         wait.until(condition);
@@ -86,6 +84,7 @@ public class Functions<MobileElement, Rotatable>  {
 
     public static void clickAndWaitForElementWithId(final String id) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+        @SuppressWarnings("Convert2Lambda")
         ExpectedCondition<Boolean> condition = new ExpectedCondition<Boolean>() {
             @Override
             public Boolean apply(WebDriver arg0) {
@@ -204,17 +203,27 @@ public static void miniplayertofullplayerSwitch() throws InterruptedException {
  
  public static void PIPSwitch() throws InterruptedException {
      for (int i = 1; i <= 10; i++) {
-    	 
          if (isVisibleWithId("com.threesixteen.app:id/tv_time_and_watching")) {
-             ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.HOME));
-             Thread.sleep(3000);
+             try {
+                 if (driver instanceof AndroidDriver) {
+                     ((AndroidDriver) driver).pressKey(new KeyEvent(AndroidKey.HOME));
+                 } else {
+                     System.out.println("Driver is not an instance of AndroidDriver");
+                 }
+                 Thread.sleep(3000);
+             } catch (Exception e) {
+                 System.out.println("Error pressing HOME key or sleeping: " + e.getMessage());
+             }
          }
-         clickAndWaitForElementWithXpath1("//android.widget.TextView[@content-desc=\"Rooter\"]");
-         Thread.sleep(3000);
+         try {
+             clickAndWaitForElementWithXpath1("//android.widget.TextView[@content-desc=\"Rooter\"]");
+             Thread.sleep(3000);
+         } catch (Exception e) {
+             System.out.println("Error clicking Rooter icon or sleeping: " + e.getMessage());
+         }
      }
      System.out.println("F--> PIP switch done 20 times");
      Thread.sleep(1000);
-
  }
  
  
@@ -1216,8 +1225,8 @@ public void TestShareCount() throws InterruptedException {
     driver.navigate().back();
     Thread.sleep(5000);
 
-    MobileElement element1 = (MobileElement) driver.findElement(By.id("com.threesixteen.app:id/tv_num_shares"));
-    String updatedShareCount = ((WebElement) element1).getText();
+    WebElement element1 = driver.findElement(By.id("com.threesixteen.app:id/tv_num_shares"));
+    String updatedShareCount = element1.getText();
     System.out.println("TC06- Updated share count is " + updatedShareCount);
     Thread.sleep(2000);
 

@@ -1,10 +1,13 @@
 package Trial;
 
+import java.net.MalformedURLException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
 import io.appium.java_client.AppiumBy;
-import org.openqa.selenium.*;
-import java.net.MalformedURLException;
 
 public class SideNav_Script<MobileElement, Rotatable> extends Functions {
 
@@ -1182,8 +1185,7 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
 
     
     
-    @SuppressWarnings("unchecked")
-	@Test(priority = 26)
+    @Test(priority = 26)
 
     public void ChangeCommunicationEmailId26() throws InterruptedException {
 
@@ -1617,16 +1619,7 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
     
     
     
-    private boolean isvisibleWitghXpath(String string) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-
-
-
-
-	@Test(priority = 32)
+    @Test(priority = 32)
 
     public void SidenNavcChangeContentlocaleKannda32() throws InterruptedException {
 

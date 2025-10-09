@@ -60,7 +60,6 @@ public class Nonpro2<MobileElement> extends Functions{
     
     
     private void OpenCentralReelTab() {
-		// TODO Auto-generated method stub
 		
 	}
 

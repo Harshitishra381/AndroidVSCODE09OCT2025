@@ -10,16 +10,13 @@ public class TestResultCleanerListener implements ITestListener {
     public void onTestSuccess(ITestResult result) {
         ITestContext context = result.getTestContext();
 
-        // Remove from failed tests if the test eventually passed
         if (context.getFailedTests().getResults(result.getMethod()).size() > 0) {
             context.getFailedTests().removeResult(result.getMethod());
         }
 
-        // Remove from skipped tests if the test eventually passed
         if (context.getSkippedTests().getResults(result.getMethod()).size() > 0) {
             context.getSkippedTests().removeResult(result.getMethod());
         }
     }
 
-    // Other override methods are not required
 }

@@ -1,0 +1,32 @@
+===============================================================
+              ANDROID AUTOMATION TEST EXECUTION REPORT
+===============================================================
+Report Generated On : 2025-10-09 17:04:12 IST
+OS                  : Mac OS X
+User                : rooter
+Java Version        : 22.0.2
+TestNG Suite Name   : Rooter Suite
+Device Name         : IQOO Z6 5G
+Platform Version    : Android 15
+Appium Version      : 2.0.0
+===============================================================
+
+CLASS | METHOD | STATUS | START TIME | END TIME | DURATION(ms) | THREAD | GROUPS | PARAMETERS | EXCEPTION
+--------------------------------------------------------------------------------------------------------------------------------------------
+Trial.Coin_Count | CoinsCount01 | PASS | 2025-10-09 17:04:46 IST | 2025-10-09 17:04:56 IST | 9899 | 1 | - | - | -
+Trial.Coin_Count | CoinsCount02 | PASS | 2025-10-09 17:05:28 IST | 2025-10-09 17:17:00 IST | 692229 | 1 | - | - | -
+Trial.Coin_Count | CoinsCount03 | PASS | 2025-10-09 17:17:32 IST | 2025-10-09 17:17:41 IST | 9106 | 1 | - | - | -
+Trial.Coin_Count | CoinsCount04 | PASS | 2025-10-09 17:18:13 IST | 2025-10-09 17:19:09 IST | 55481 | 1 | - | - | -
+
+===============================================================
+                   ANDROID EXECUTION SUMMARY
+===============================================================
+Total Tests   : 4
+Passed        : 4
+Failed        : 0
+Skipped       : 0
+Pass %         : 100.00%
+Fail %         : 0.00%
+Skip %         : 0.00%
+Execution Completed On : 2025-10-09 17:19:09 IST
+===============================================================

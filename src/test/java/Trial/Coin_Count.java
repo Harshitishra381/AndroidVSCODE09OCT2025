@@ -1,22 +1,18 @@
 package Trial;
 
+import java.net.MalformedURLException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
 import io.appium.java_client.AppiumBy;
-import org.openqa.selenium.*;
-import java.net.MalformedURLException;
 
 public class Coin_Count<MobileElement, Rotatable> extends Functions {
 
-
-	
-	
     
-  
-
-    
-    @SuppressWarnings("unchecked")
-	@Test(priority = 01)
+    @Test(priority = 01)
     public void CoinsCount01() throws InterruptedException, MalformedURLException {
 
     	
@@ -82,10 +78,8 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
     } 
  
 
-
-
-		@SuppressWarnings("unchecked")
-    	@Test(priority = 02)
+    
+		@Test(priority = 02)
         public void CoinsCount02() throws InterruptedException, MalformedURLException {
         
         
@@ -116,7 +110,7 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
              }
              driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
              System.out.println("Clicking on: " + targetText);
-             Thread.sleep(20000); 
+             Thread.sleep(1000); 
              SkipAd();
              SkipAd();
              if (isVisibleWithId("com.threesixteen.app:id/tv_user_coins")) {
@@ -125,7 +119,7 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
         	   MobileElement element11 = (MobileElement) driver.findElement(By.id("com.threesixteen.app:id/tv_user_coins"));
                String RewardCoinCount = ((WebElement) element11).getText();
                System.out.println("TC04- Coin count on Reward page is " + RewardCoinCount);
-               Thread.sleep(2000);
+               Thread.sleep(1000);
                 
         
                if (RewardCoinCount.equals(SideNavCoinCount)) {           
@@ -144,14 +138,14 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
              }
              else
              {
-          	   Thread.sleep(5000);     
+          	   Thread.sleep(1000);     
             	 driver.navigate().back();
           	   Thread.sleep(1000);    
                SkipAd();
                MobileElement element11 = (MobileElement) driver.findElement(By.id("com.threesixteen.app:id/tv_user_coins"));
                String RewardCoinCount = ((WebElement) element11).getText();
                System.out.println("TC04- Coin count on Reward page is " + RewardCoinCount);
-               Thread.sleep(2000);
+               Thread.sleep(1000);
                 
         
                if (RewardCoinCount.equals(SideNavCoinCount)) {           
@@ -176,8 +170,7 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
         
         
         
-        @SuppressWarnings("unchecked")
-    	@Test(priority = 03)
+        @Test(priority = 03)
         public void CoinsCount03() throws InterruptedException, MalformedURLException {
         
        
@@ -226,8 +219,7 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
     
     
     
-        @SuppressWarnings("unchecked")
-    	@Test(priority = 04)
+        @Test(priority = 04)
         public void CoinsCount04() throws InterruptedException, MalformedURLException {
         
 	
@@ -244,7 +236,7 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
              System.out.println("TC02- Open coin logs");
              Thread.sleep(1000);
              SkipAd();
-             Thread.sleep(5000);             
+             Thread.sleep(1000);             
 			MobileElement element2 = (MobileElement) driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout[1]/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView[1]"));
              String CoinLogCoinCount = ((WebElement) element2).getText();
              System.out.println("TC02- Coin count on coin log is " + CoinLogCoinCount);
