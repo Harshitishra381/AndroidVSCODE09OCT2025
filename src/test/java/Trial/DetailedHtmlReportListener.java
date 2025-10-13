@@ -33,10 +33,10 @@ public class DetailedHtmlReportListener implements ITestListener {
             String timestamp = new SimpleDateFormat("yyyy-MM-dd_HH-mm-ss").format(new Date());
             String reportDir = "./target/surefire-reports";
             String reportFileName = "detailed-test-report-" + timestamp + ".html";
-            String fullPath = reportDir + "/" + reportFileName;
+            reportFilePath = reportDir + "/" + reportFileName;
             new java.io.File(reportDir).mkdirs(); // Ensure directory exists
 
-            writer = new PrintWriter(new FileWriter(fullPath, false));
+            writer = new PrintWriter(new FileWriter(reportFilePath, false));
 
             // HTML Header
             writer.println("<!DOCTYPE html>");
@@ -83,7 +83,7 @@ public class DetailedHtmlReportListener implements ITestListener {
             writer.println("<th>Exception</th>");
             writer.println("</tr>");
 
-            System.out.println("📄 Detailed HTML report will be saved at: " + fullPath);
+            System.out.println("📄 Detailed HTML report will be saved at: " + reportFilePath);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -182,6 +182,8 @@ public class DetailedHtmlReportListener implements ITestListener {
         return sb.toString();
     }
 
+    private String reportFilePath;
+
     @Override
     public void onFinish(ITestContext context) {
         // Close table
@@ -234,5 +236,8 @@ public class DetailedHtmlReportListener implements ITestListener {
 
         writer.println("</body></html>");
         writer.close();
+        
+        // Send via Gmail (free)
+        GmailSender.sendReport(reportFilePath);
     }
 }
