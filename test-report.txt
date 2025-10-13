@@ -1,4 +1,0 @@
-SKIP: CoinsCount01
-SKIP: CoinsCount02
-SKIP: CoinsCount03
-SKIP: CoinsCount04

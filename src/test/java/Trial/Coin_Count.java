@@ -11,8 +11,15 @@ import io.appium.java_client.AppiumBy;
 
 public class Coin_Count<MobileElement, Rotatable> extends Functions {
 
+
+	
+	
     
-    @Test(priority = 01)
+  
+
+    
+    @SuppressWarnings("unchecked")
+	@Test(priority = 01)
     public void CoinsCount01() throws InterruptedException, MalformedURLException {
 
     	
@@ -78,8 +85,10 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
     } 
  
 
-    
-		@Test(priority = 02)
+
+
+		@SuppressWarnings("unchecked")
+    	@Test(priority = 02)
         public void CoinsCount02() throws InterruptedException, MalformedURLException {
         
         
@@ -110,17 +119,15 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
              }
              driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
              System.out.println("Clicking on: " + targetText);
-             Thread.sleep(1000); 
+             Thread.sleep(30000); 
              SkipAd();
              SkipAd();
              if (isVisibleWithId("com.threesixteen.app:id/tv_user_coins")) {
-            	 
              
         	   MobileElement element11 = (MobileElement) driver.findElement(By.id("com.threesixteen.app:id/tv_user_coins"));
                String RewardCoinCount = ((WebElement) element11).getText();
                System.out.println("TC04- Coin count on Reward page is " + RewardCoinCount);
-               Thread.sleep(1000);
-                
+               Thread.sleep(1000); 
         
                if (RewardCoinCount.equals(SideNavCoinCount)) {           
             	   Thread.sleep(1000);     
@@ -170,7 +177,8 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
         
         
         
-        @Test(priority = 03)
+        @SuppressWarnings("unchecked")
+    	@Test(priority = 03)
         public void CoinsCount03() throws InterruptedException, MalformedURLException {
         
        
@@ -234,9 +242,9 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
              OpenTaskPage();
              clickAndWaitForElementWithId("com.threesixteen.app:id/tv_user_coins");
              System.out.println("TC02- Open coin logs");
-             Thread.sleep(1000);
+             Thread.sleep(10000);
              SkipAd();
-             Thread.sleep(1000);             
+             Thread.sleep(2000);             
 			MobileElement element2 = (MobileElement) driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout[1]/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView[1]"));
              String CoinLogCoinCount = ((WebElement) element2).getText();
              System.out.println("TC02- Coin count on coin log is " + CoinLogCoinCount);
@@ -259,16 +267,5 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
         
         
         
-        
-	
-	@AfterMethod
-	
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+      
 }
-
-
-

@@ -1,6 +1,5 @@
 package Trial;
 
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
@@ -618,11 +617,5 @@ public class Explorepage_Script<MobileElement, Rotatable>  extends Functions{
 	        
 	        
 	
-	@AfterMethod
 
-	public static void tearDown() {
-		if (driver != null) {
-			driver.quit();
-		}
-	}
 }

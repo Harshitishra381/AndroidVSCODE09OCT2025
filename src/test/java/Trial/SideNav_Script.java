@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
@@ -440,7 +439,7 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
     
 
     private boolean isvisibleithXpath1(String string) {
-		// TODO Auto-generated method stub
+
 		return false;
 	}
     
@@ -539,8 +538,7 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
     
     
 
-    @SuppressWarnings("unchecked")
-	@Test(priority = 13)
+    @Test(priority = 13)
     public void SidenNavcChangeProfileName13() throws InterruptedException {
 
         OpenSideNav();
@@ -1305,8 +1303,7 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
     }
     
     
-    @SuppressWarnings("unchecked")
-	@Test(priority = 28)
+    @Test(priority = 28)
 
     public void SidenNavcChangeContentlocaleTamil28() throws InterruptedException {
 
@@ -2018,7 +2015,6 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
             } catch (Exception e) {
             driver.findElement(
                 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-            Thread.sleep(1000); 
         }
     }
     driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
@@ -2141,14 +2137,8 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
     
     
 	
-	@AfterMethod
-	
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
-}
+
 
 
 

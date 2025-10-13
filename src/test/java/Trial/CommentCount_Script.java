@@ -1,11 +1,12 @@
 package Trial;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import com.google.common.collect.ImmutableMap;
-
-import org.openqa.selenium.*;
 import java.net.MalformedURLException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
+
+import com.google.common.collect.ImmutableMap;
 
 public class CommentCount_Script<MobileElement, Rotatable> extends Functions {
 
@@ -13,15 +14,14 @@ public class CommentCount_Script<MobileElement, Rotatable> extends Functions {
 	
     
     
-    @SuppressWarnings("unchecked")
-	@Test(priority = 01)
+    @Test(priority = 01)
     public void CommentCountOnReel01() throws InterruptedException, MalformedURLException {
 
        OpenCentralReeltab();
         
        clickAndWaitForElementWithId("com.threesixteen.app:id/iv_comment");
        System.out.println("TC02- Opened the comment section.....");
-       Thread.sleep(2000);
+       Thread.sleep(1000);
    
         MobileElement element = (MobileElement) driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.TextView"));
         String initialCommentCount = ((WebElement) element).getText();
@@ -39,7 +39,7 @@ public class CommentCount_Script<MobileElement, Rotatable> extends Functions {
             }
             else
             {
-                Thread.sleep(3000);
+                Thread.sleep(1000);
                 clickAndWaitForElementWithId("com.threesixteen.app:id/tv_comment");
                 (driver).findElement(By.id("com.threesixteen.app:id/et_comment")).sendKeys("wow");
                 System.out.println("TC07- Typed wow comment section");
@@ -49,7 +49,7 @@ public class CommentCount_Script<MobileElement, Rotatable> extends Functions {
                 Thread.sleep(1000);
             }
 
-            Thread.sleep(10000);
+            Thread.sleep(1000);
 
         MobileElement element1 = (MobileElement) driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.TextView"));
         String updatedCommentCount = ((WebElement) element1).getText();
@@ -78,7 +78,6 @@ public class CommentCount_Script<MobileElement, Rotatable> extends Functions {
     
 
 
-	@SuppressWarnings("unchecked")
 	@Test(priority = 02)
     public void CommmentCountOnVideo02() throws InterruptedException, MalformedURLException {
     
@@ -86,7 +85,7 @@ public class CommentCount_Script<MobileElement, Rotatable> extends Functions {
 
     	OpenVideo();
         SkipAd();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
     	 MobileElement element = (MobileElement) driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[2]/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.TextView"));
          String initialCommentCount = ((WebElement) element).getText();
          System.out.println("TC03A- Initial Comment count is " + initialCommentCount);
@@ -138,8 +137,7 @@ public class CommentCount_Script<MobileElement, Rotatable> extends Functions {
     
     
     
-    @SuppressWarnings("unchecked")
-   	@Test(priority = 03)
+    @Test(priority = 03)
        public void CommmentCountOnSearchVideo03() throws InterruptedException, MalformedURLException {
        	
        	
@@ -266,7 +264,7 @@ public class CommentCount_Script<MobileElement, Rotatable> extends Functions {
             MobileElement element1 = (MobileElement) driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.LinearLayout[2]/android.widget.TextView"));
             String updatedCommentCount = ((WebElement) element1).getText();
             System.out.println("TC07- Updated Like count is " + updatedCommentCount);
-            Thread.sleep(3000);
+            Thread.sleep(1000);
         	
         	
         	
@@ -299,13 +297,7 @@ public class CommentCount_Script<MobileElement, Rotatable> extends Functions {
 
 
 
-	@AfterMethod
-	
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+
 }
 
 

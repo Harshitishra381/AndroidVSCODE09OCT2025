@@ -1,11 +1,11 @@
 package Trial;
 
 
-import org.openqa.selenium.*;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-
 import java.net.MalformedURLException;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.Test;
 
 public class LikesCount_Script<MobileElement, Rotatable>  extends Functions {
 
@@ -20,7 +20,7 @@ public class LikesCount_Script<MobileElement, Rotatable>  extends Functions {
         System.out.println("TC01- Central Reel Tab opened");        
         clickAndWaitForElementWithId("com.threesixteen.app:id/iv_comment");
        System.out.println("TC02- Opened the comment section.....");
-       Thread.sleep(2000);
+       Thread.sleep(1000);
         MobileElement element = (MobileElement) driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.widget.HorizontalScrollView/android.widget.LinearLayout/android.widget.LinearLayout[1]/android.widget.TextView"));
         String initialLikeCount = ((WebElement) element).getText();
         System.out.println("TC03- Initial Likes count is " + initialLikeCount);
@@ -58,15 +58,14 @@ public class LikesCount_Script<MobileElement, Rotatable>  extends Functions {
     
     
     
-    @SuppressWarnings("unchecked")
-	@Test(priority = 02)
+    @Test(priority = 02)
     public void LikesCountOnVideo02() throws InterruptedException, MalformedURLException {
     	
     	
     	
       	OpenVideo();
         SkipAd();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         clickAndWaitForElementWithId("com.threesixteen.app:id/tv_num_comment");
         System.out.println("TC03- Open Comment section");
         Thread.sleep(2000);
@@ -144,14 +143,8 @@ public class LikesCount_Script<MobileElement, Rotatable>  extends Functions {
         
 	
 	
-	@AfterMethod
-	
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
-}
+
 
 
 

@@ -1,6 +1,5 @@
 package Trial;
 
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import com.google.common.collect.ImmutableMap;
 
@@ -1158,18 +1157,12 @@ public class Video_Script<MobileElement, Rotatable> extends Functions  {
     
 
 
-    @Test()
+  
     
     
     
 
-	@AfterMethod
-	
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+
 }
 
 

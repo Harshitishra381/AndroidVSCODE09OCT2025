@@ -3,7 +3,6 @@ package Trial;
 
 import com.google.common.collect.ImmutableMap;
 
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
@@ -956,14 +955,8 @@ public void PUBGSearchCreatorList18() throws InterruptedException, MalformedURLE
 
 
 
-	@AfterMethod
-	
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
-}
+
 
 
 

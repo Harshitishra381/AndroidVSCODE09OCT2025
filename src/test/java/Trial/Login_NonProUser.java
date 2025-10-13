@@ -12,7 +12,6 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -197,10 +196,5 @@ public class Login_NonProUser  {
 	
 	
 	
-	@AfterMethod
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
-}
+

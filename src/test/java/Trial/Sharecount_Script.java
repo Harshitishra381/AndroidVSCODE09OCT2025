@@ -1,63 +1,12 @@
 package Trial;
 
-import org.testng.annotations.AfterMethod;
+
+import java.net.MalformedURLException;
+
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import com.google.common.collect.ImmutableMap;
-
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
-import io.appium.java_client.remote.SupportsRotation;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.Duration;
 
 public class Sharecount_Script<MobileElement, Rotatable> extends Functions {
 
@@ -71,8 +20,7 @@ public class Sharecount_Script<MobileElement, Rotatable> extends Functions {
     
     
     
-    @SuppressWarnings("unchecked")
-	@Test(priority = 01)
+    @Test(priority = 01)
     public void ShareCountOnLiveStreamHomePage01() throws InterruptedException, MalformedURLException {
 
         if (isVisibleWithXPath1(
@@ -130,13 +78,7 @@ public class Sharecount_Script<MobileElement, Rotatable> extends Functions {
     
         
 	
-	@AfterMethod
-	
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+
 }
 
 

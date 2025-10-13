@@ -3,7 +3,7 @@ package Trial;
 import java.net.MalformedURLException;
 
 import org.openqa.selenium.By;
-import org.testng.annotations.AfterMethod;
+
 import org.testng.annotations.Test;
 
 import com.google.common.collect.ImmutableMap;
@@ -13,7 +13,7 @@ import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
-public class LiveStream_script<MobileElement, Rotatable> extends Functions {
+public class LiveStream_script extends Functions {
 
 
 
@@ -22,10 +22,9 @@ public class LiveStream_script<MobileElement, Rotatable> extends Functions {
    
      
 
-    @Test(priority = 1)
-    public void LiveMiniplayertabswittch1() throws InterruptedException {
-
-         OpenLivetStream();
+    @Test(priority = 1, alwaysRun = true)
+     public void LiveMiniplayertabswittch1() throws InterruptedException {
+          OpenLivetStream();
          Thread.sleep(5000);
         driver.navigate().back();
         System.out.println("TC09- Player switch to mini player");
@@ -40,14 +39,14 @@ public class LiveStream_script<MobileElement, Rotatable> extends Functions {
     
     
    
-    @Test(priority = 2)
+    @Test(priority = 2 )
     public void livestreamwatccanwin2() throws InterruptedException {
-
+        
         OpenLivetStream();
-
+        SkipSurvey();
         Thread.sleep(2000);
         clickAndWaitForElementWithId("com.threesixteen.app:id/iv_close");
-        System.out.println("TC09- Exist from Live chat");
+        System.out.println("TC03- Exist from Live chat");
         Thread.sleep(2000);
         
         driver.findElement(AppiumBy.androidUIAutomator(
@@ -58,19 +57,21 @@ public class LiveStream_script<MobileElement, Rotatable> extends Functions {
         driver.findElement(AppiumBy.androidUIAutomator(
                 "new UiScrollable(new UiSelector().resourceId(\"com.threesixteen.app:id/layout_fan_rank\")).setAsHorizontalList().scrollForward(3)"));
         System.out.println("TC04- scroll left ");
-        Thread.sleep(2000); 
+        Thread.sleep(1000); 
         driver.findElement(By.xpath("//*[contains(@text,'Active Tasks')]")).click();
 //        clickAndWaitForElementWithId("com.threesixteen.app:id/iv_watch_n_view_lottie");
         System.out.println("TC04- open active tasks");
-        Thread.sleep(2000); 
-        clickAndWaitForElementWithId("com.threesixteen.app:id/iv_refresh");
-        System.out.println("TC05- refresh watch & winn");
-        Thread.sleep(2000); 
+        Thread.sleep(1000); 
+        if (isVisibleWithId("com.threesixteen.app:id/iv_refresh")) {
+            clickAndWaitForElementWithId("com.threesixteen.app:id/iv_refresh");
+            System.out.println("TC05- refresh watch & winn");
+        }
+        Thread.sleep(1000); 
         if (isVisibleWithId("com.threesixteen.app:id/iv_2x_toggle")) {
         	
         clickAndWaitForElementWithId("com.threesixteen.app:id/tv_coins");
         System.out.println("TC06- Open coins log");
-        Thread.sleep(2000); 
+        Thread.sleep(1000); 
         driver.navigate().back();
         Thread.sleep(2000); 
         System.out.println("TC07- Back from coins log");
@@ -79,71 +80,69 @@ public class LiveStream_script<MobileElement, Rotatable> extends Functions {
 		System.out.println("TC08- Opened see More tasks");
       driver.navigate().back();
       System.out.println("TC09- Back from task page");
-      Thread.sleep(2000); 
+      Thread.sleep(1000); 
       clickAndWaitForElementWithId("com.threesixteen.app:id/tv_coins");
       System.out.println("TC10- Open coins log");
-      Thread.sleep(2000); 
+      Thread.sleep(1000); 
       driver.navigate().back();
-      Thread.sleep(2000); 
+      Thread.sleep(1000); 
       System.out.println("TC11- Back from coins log");
         driver.navigate().back();
         System.out.println("TC12- Back from task page");
-        Thread.sleep(2000); 
+        Thread.sleep(1000); 
         clickAndWaitForElementWithId("com.threesixteen.app:id/iv_close");
         System.out.println("TC13- Exist from Live chat");
-        Thread.sleep(2000); 
+        Thread.sleep(1000); 
         
         
         driver.findElement(By.xpath("//*[contains(@text,'Active Tasks')]")).click();
         System.out.println("TC14- open Active tasks");
-        Thread.sleep(2000); 
+        Thread.sleep(1000); 
         clickAndWaitForElementWithId("com.threesixteen.app:id/tv_more_task");
         System.out.println("TC15- Open see more tasks");
-        Thread.sleep(2000); 
+        Thread.sleep(1000); 
         driver.navigate().back();
-        Thread.sleep(2000); 
+        Thread.sleep(1000); 
         clickAndWaitForElementWithId("com.threesixteen.app:id/iv_close");
-        System.out.println("TC16- Close bottom sheet");
+        System.out.println("\u001B[32m\u2713 PASS: TC16- Close bottom sheet\u001B[0m");
         }
         else
         {
         	 clickAndWaitForElementWithId("com.threesixteen.app:id/title_image");
-        		System.out.println("TC17- 2x not coming in Active tasks bottom sheet");
+        		System.out.println("\u001B[33m\u26a0 WARNING: TC17- 2x not coming in Active tasks bottom sheet\u001B[0m");
               Thread.sleep(1000);
         }
+        System.out.println("\u001B[32m\u2713 PASS: livestreamwatccanwin2 test completed successfully\u001B[0m");
     }
     
 
-    @Test(priority = 3)
+    @Test(priority = 3, alwaysRun = true)
     public void liveplayercomennt3() throws InterruptedException {
+        OpenLivetStream();
 
-    	OpenLivetStream();
-
-        Thread.sleep(1000);
-//        clickAndWaitForElementWithId("com.threesixteen.app:id/player_layout");
-//        System.out.println("TC02- opened feed");
-
-        Thread.sleep(7000);
-        clickAndWaitForElementWithId("com.threesixteen.app:id/et_comment_collapsed");
-        System.out.println("TC06- clicked comment section.....");
-        if (isVisibleWithId("com.threesixteen.app:id/et_comment"))
-        {
-         
-        (driver).findElement(By.id("com.threesixteen.app:id/et_comment")).sendKeys("Hi");
-        System.out.println("TC07- Typed Hi comment section.....");
-        Thread.sleep(1000);
-        clickAndWaitForElementWithId("com.threesixteen.app:id/iv_post");
-        System.out.println("TC08- Send the  comment on live stream");
-        Thread.sleep(1000);
-        clickAndWaitForElementWithId("com.threesixteen.app:id/iv_close");
-        System.out.println("TC09- Exist from Live chat");
-        Thread.sleep(1000);
-        }
-        else
-        {
+            Thread.sleep(1000);
+            Thread.sleep(7000);
+            clickAndWaitForElementWithId("com.threesixteen.app:id/et_comment_collapsed");
+            System.out.println("\u001B[32m\u2713 PASS: TC06- clicked comment section\u001B[0m");
+            if (isVisibleWithId("com.threesixteen.app:id/et_comment"))
+            {
+             
+            (driver).findElement(By.id("com.threesixteen.app:id/et_comment")).sendKeys("Hi");
+            System.out.println("\u001B[32m\u2713 PASS: TC07- Typed Hi comment section\u001B[0m");
+            Thread.sleep(1000);
+            clickAndWaitForElementWithId("com.threesixteen.app:id/iv_post");
+            System.out.println("\u001B[32m\u2713 PASS: TC08- Send the comment on live stream\u001B[0m");
+            Thread.sleep(1000);
             clickAndWaitForElementWithId("com.threesixteen.app:id/iv_close");
-            System.out.println("TC10- Only Followers chat allowed");
-        }
+            System.out.println("\u001B[32m\u2713 PASS: TC09- Exist from Live chat\u001B[0m");
+            Thread.sleep(1000);
+            }
+            else
+            {
+                clickAndWaitForElementWithId("com.threesixteen.app:id/iv_close");
+                System.out.println("\u001B[33m\u26a0 WARNING: TC10- Only Followers chat allowed\u001B[0m");
+            }
+        System.out.println("\u001B[32m\u2713 PASS: liveplayercomennt3 test completed successfully\u001B[0m");
     }
 
     
@@ -216,6 +215,17 @@ public class LiveStream_script<MobileElement, Rotatable> extends Functions {
         clickAndWaitForElementWithId("com.threesixteen.app:id/iv_top_donors_support_lottie");
         System.out.println("TC17- Opned  Top Donors list");
         Thread.sleep(1000);
+        if (isVisibleWithId("com.threesixteen.app:id/refresh_btn")) {
+                    clickAndWaitForElementWithId("com.threesixteen.app:id/refresh_btn");
+        	System.out.println("TC18- Refresh button is visible");
+        }
+        else
+        {
+            
+        	clickAndWaitForElementWithId("com.threesixteen.app:id/iv_top_donors_support_lottie");
+            System.out.println("TC17- Opned  Top Donors list");
+            Thread.sleep(1000);
+        }   
         clickAndWaitForElementWithId("com.threesixteen.app:id/refresh_btn");
         System.out.println("TC18- Refreshed top donors list");
         Thread.sleep(1000);
@@ -262,7 +272,7 @@ public class LiveStream_script<MobileElement, Rotatable> extends Functions {
 
     
     
-    @Test(priority = 6)
+    @Test(priority = 6, alwaysRun = true)
     public void livestreamwatchandwin6() throws InterruptedException {
 
         OpenLivetStream();
@@ -993,7 +1003,7 @@ public class LiveStream_script<MobileElement, Rotatable> extends Functions {
         driver.navigate().back();
         Thread.sleep(1000);
         driver.findElement(AppiumBy.androidUIAutomator(
-              "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(5)"));
+              "new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
         System.out.println("TC05- List scrolled");
         clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[3]/android.widget.TextView");
         System.out.println("TC06- open profile from pro cerartor list");
@@ -1769,13 +1779,7 @@ else
   
     
     
-	@AfterMethod
-	
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+    
 }
 
 

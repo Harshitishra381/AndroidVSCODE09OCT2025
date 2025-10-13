@@ -1,6 +1,5 @@
 package IOS;
 
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import java.net.MalformedURLException;
@@ -53,10 +52,4 @@ public class Login_ProUser  {
 
 
 	
-	@AfterMethod
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
-}

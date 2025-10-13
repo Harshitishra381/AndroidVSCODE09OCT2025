@@ -1,6 +1,5 @@
 package Trial;
 
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import com.google.common.collect.ImmutableMap;
 
@@ -650,13 +649,7 @@ public class RecordedStream_Script<MobileElement, Rotatable> extends Functions  
 	 
 	
 	
-	@AfterMethod
-	
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+
 }
 
 

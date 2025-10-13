@@ -3,7 +3,6 @@ package Trial;
 import io.appium.java_client.AppiumBy;
 
 import org.openqa.selenium.*;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 
@@ -486,13 +485,7 @@ public class InAppNotification_Script<MobileElement, Rotatable> extends Function
     
 	
 	
-	@AfterMethod
-	
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
+
 }
 
 

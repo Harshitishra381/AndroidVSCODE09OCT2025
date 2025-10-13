@@ -1,42 +1,23 @@
 package Trial;
 
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
@@ -48,7 +29,6 @@ import org.openqa.selenium.*;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
@@ -1014,14 +994,8 @@ public class TaskPage_Script<MobileElement, Rotatable> extends Functions {
 				 
 				
 				
-	@AfterMethod
-	
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
-}
+
 
 
 

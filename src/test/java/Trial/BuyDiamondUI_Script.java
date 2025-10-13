@@ -1,12 +1,18 @@
 package Trial;
 
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.Test;
-import io.appium.java_client.AppiumBy;
+import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import org.openqa.selenium.*;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.Test;
+
+import io.appium.java_client.AppiumBy;
 
 public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 
@@ -46,7 +52,8 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		OpenSideNav();
 		String targetText = "Buy Diamonds";
         boolean textFound = false;
-        int maxScrolls = 5; 
+        int maxScrolls = 5;
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 
         for (int i = 0; i < maxScrolls && !textFound; i++) {
             try {
@@ -57,7 +64,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
             } catch (Exception e) {
                 driver.findElement(
                     AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-                Thread.sleep(1000); 
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" + targetText + "')]"))); 
             }
         }
         driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
@@ -78,7 +85,8 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		OpenSideNav();
       String targetText = "Buy Diamonds";
         boolean textFound = false;
-        int maxScrolls = 5; 
+        int maxScrolls = 5;
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 
         for (int i = 0; i < maxScrolls && !textFound; i++) {
             try {
@@ -89,7 +97,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
             } catch (Exception e) {
                 driver.findElement(
                     AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-                Thread.sleep(1000); 
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" + targetText + "')]"))); 
             }
         }
         driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
@@ -130,7 +138,8 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		OpenSideNav();
 		 String targetText = "Buy Diamonds";
 	        boolean textFound = false;
-	        int maxScrolls = 5; 
+	        int maxScrolls = 5;
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 
 	        for (int i = 0; i < maxScrolls && !textFound; i++) {
 	            try {
@@ -141,7 +150,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	            } catch (Exception e) {
 	                driver.findElement(
 	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-	                Thread.sleep(1000); 
+	                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" + targetText + "')]"))); 
 	            }
 	        }
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
@@ -179,6 +188,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		boolean textFound = false;
 		int maxScrolls = 5; 
 		
+		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 		for (int i = 0; i < maxScrolls && !textFound; i++) {
 		    try {
 		        driver.findElement(
@@ -188,7 +198,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		    } catch (Exception e) {
 		        driver.findElement(
 		            AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-		        Thread.sleep(1000); 
+		        wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" + targetText + "')]")));
 		    }
 		}
 		driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
@@ -220,9 +230,8 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	
 	
 
-	private boolean isvisbileWithXpath1(String string) {
-		// TODO Auto-generated method stub
-		return false;
+	private boolean isvisbileWithXpath1(String xpath) {
+		return !driver.findElements(By.xpath(xpath)).isEmpty();
 	}
 
 
@@ -234,6 +243,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		 String targetText = "Buy Diamonds";
 	        boolean textFound = false;
 	        int maxScrolls = 5; 
+	        WebDriverWait loopWait6 = new WebDriverWait(driver, Duration.ofSeconds(1));
 
 	        for (int i = 0; i < maxScrolls && !textFound; i++) {
 	            try {
@@ -244,7 +254,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	            } catch (Exception e) {
 	                driver.findElement(
 	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-	                Thread.sleep(1000); 
+	                loopWait6.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" + targetText + "')]"))); 
 	            }
 	        }
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
@@ -280,6 +290,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		 String targetText = "Buy Diamonds";
 	        boolean textFound = false;
 	        int maxScrolls = 5; 
+	        WebDriverWait loopWait7 = new WebDriverWait(driver, Duration.ofSeconds(1));
 
 	        for (int i = 0; i < maxScrolls && !textFound; i++) {
 	            try {
@@ -290,7 +301,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	            } catch (Exception e) {
 	                driver.findElement(
 	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-	                Thread.sleep(1000); 
+	                loopWait7.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" + targetText + "')]"))); 
 	            }
 	        }
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
@@ -331,6 +342,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		 String targetText = "Buy Diamonds";
 	        boolean textFound = false;
 	        int maxScrolls = 5; 
+	        WebDriverWait loopWait8 = new WebDriverWait(driver, Duration.ofSeconds(1));
 
 	        for (int i = 0; i < maxScrolls && !textFound; i++) {
 	            try {
@@ -341,7 +353,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	            } catch (Exception e) {
 	                driver.findElement(
 	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-	                Thread.sleep(1000); 
+	                loopWait8.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" + targetText + "')]"))); 
 	            }
 	        }
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
@@ -380,6 +392,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		 String targetText = "Buy Diamonds";
 	        boolean textFound = false;
 	        int maxScrolls = 5; 
+	        WebDriverWait loopWait9 = new WebDriverWait(driver, Duration.ofSeconds(1));
 
 	        for (int i = 0; i < maxScrolls && !textFound; i++) {
 	            try {
@@ -390,7 +403,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	            } catch (Exception e) {
 	                driver.findElement(
 	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-	                Thread.sleep(1000); 
+	                loopWait9.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" + targetText + "')]"))); 
 	            }
 	        }
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
@@ -549,7 +562,8 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		OpenSideNav();
 		 String targetText = "Buy Diamonds";
 	        boolean textFound = false;
-	        int maxScrolls = 4; 
+	        int maxScrolls = 4;
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 
 	        for (int i = 0; i < maxScrolls && !textFound; i++) {
 	            try {
@@ -560,7 +574,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	            } catch (Exception e) {
 	                driver.findElement(
 	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-	                Thread.sleep(1000); 
+	                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" + targetText + "')]"))); 
 	            }
 	        }
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
@@ -603,7 +617,8 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		OpenSideNav();
 		 String targetText = "Buy Diamonds";
 	        boolean textFound = false;
-	        int maxScrolls = 4; 
+	        int maxScrolls = 4;
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
 
 	        for (int i = 0; i < maxScrolls && !textFound; i++) {
 	            try {
@@ -614,7 +629,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	            } catch (Exception e) {
 	                driver.findElement(
 	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-	                Thread.sleep(1000); 
+	                wait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[contains(@text,'" + targetText + "')]"))); 
 	            }
 	        }
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
@@ -622,15 +637,16 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		
 	        clickAndWaitForElementWithId("com.threesixteen.app:id/tv_gems");
 			System.out.println("TC01 -Open diamond log ");
-            Thread.sleep(5000);
+            WebDriverWait methodWait = new WebDriverWait(driver, Duration.ofSeconds(5));
+            methodWait.until(ExpectedConditions.presenceOfElementLocated(By.className("android.webkit.WebView")));
             
             if (isVisibleWithClass("android.webkit.WebView")) {
     			System.out.println("TC02 -Diamond payout webview is opend ");
-                Thread.sleep(1000);
+                methodWait.until(ExpectedConditions.elementToBeClickable(By.id("com.threesixteen.app:id/tv_gems")));
                 driver.navigate().back();
     			System.out.println("TC03 -Back from Diamond payout webview");
 
-                Thread.sleep(1000);
+                methodWait.until(ExpectedConditions.elementToBeClickable(By.id("com.threesixteen.app:id/tv_gems")));
 
                 clickAndWaitForElementWithId("com.threesixteen.app:id/tv_gems");
     			System.out.println("TC04 -Open diamond log Again ");
@@ -646,12 +662,4 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	
 	
 
-
-	@AfterMethod
-
-	public static void tearDown() {
-		if (driver != null) {
-			driver.quit();
-		}
-	}
 }

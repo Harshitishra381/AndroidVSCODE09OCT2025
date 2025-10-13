@@ -8,15 +8,8 @@
   </listeners>
   <test thread-count="5" name="Default Test(failed)(failed)(failed)(failed)(failed)(failed)(failed)(failed)">
     <classes>
-      <class name="Trial.Coin_Count">
-        <methods>
-          <include name="tearDown"/>
-          <include name="CoinsCount04"/>
-          <include name="setup"/>
-          <include name="CoinsCount02"/>
-          <include name="CoinsCount03"/>
-        </methods>
-      </class> <!-- Trial.Coin_Count -->
+       <class name="Trial.LiveStream_script"/>
+            <class name="Trial.Reel_Script"/>
     </classes>
   </test> <!-- Default Test(failed)(failed)(failed)(failed)(failed)(failed)(failed)(failed) -->
 </suite> <!-- Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Failed suite [Default Suite]]]]]]]] -->

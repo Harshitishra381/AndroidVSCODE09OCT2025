@@ -15,9 +15,9 @@ public class RetryAnalyzer implements IRetryAnalyzer {
     public boolean retry(ITestResult result) {
         if (retryCount < maxRetryCount) {
             retryCount++;
-            return true; // Retry the test
+            return true; 
         }
-        return false; // No more retries
+        return false; 
     }
 }
 

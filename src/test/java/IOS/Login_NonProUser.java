@@ -1,17 +1,17 @@
 package IOS;
 
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
+
 import io.appium.java_client.AppiumDriver;
+
 import org.openqa.selenium.By;
-import org.openqa.selenium.Capabilities;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.FluentWait;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeMethod;
+
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
@@ -21,16 +21,13 @@ public class Login_NonProUser {
 
     public static void clickAndWaitForElementWithXpath1(final String xpath) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        ExpectedCondition<Boolean> condition = new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver arg0) {
-                try {
-                    WebElement element = (driver).findElement(By.xpath(xpath));
-                    element.click();
-                    return true;
-                } catch (Exception e) {
-                    return false;
-                }
+        ExpectedCondition<Boolean> condition = (WebDriver arg0) -> {
+            try {
+                WebElement element = (driver).findElement(By.xpath(xpath));
+                element.click();
+                return true;
+            } catch (Exception e) {
+                return false;
             }
         };
         wait.until(condition);
@@ -60,18 +57,15 @@ public class Login_NonProUser {
 
     public static void clickAndWaitForElementWithId(final String id) {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
-        ExpectedCondition<Boolean> condition = new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver arg0) {
-                try {
-                    WebElement element = (driver).findElement(By.id(id));
+        ExpectedCondition<Boolean> condition = (WebDriver arg0) -> {
+            try {
+                WebElement element = (driver).findElement(By.id(id));
 
 //				    	(driver).findElement(null);
-                    element.click();
-                    return true;
-                } catch (Exception e) {
-                    return false;
-                }
+                element.click();
+                return true;
+            } catch (Exception e) {
+                return false;
             }
         };
         wait.until(condition);
@@ -94,8 +88,6 @@ public class Login_NonProUser {
 
 
     static AppiumDriver driver;
-    private Capabilities cap;
-	private FluentWait<WebDriver> wait;
 
 
     @BeforeMethod
@@ -178,10 +170,5 @@ public class Login_NonProUser {
 	
 	
 	
-	@AfterMethod
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
-}
+

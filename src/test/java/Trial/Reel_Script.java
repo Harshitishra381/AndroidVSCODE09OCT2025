@@ -10,7 +10,6 @@ import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
 
 import org.openqa.selenium.*;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import java.net.MalformedURLException;
@@ -20,7 +19,7 @@ public class Reel_Script<MobileElement, Rotatable> extends Functions {
 
 	
 
-    @Test(priority = 1)
+    @Test(priority = 1, alwaysRun = true)
     public void CentralReelTest1() throws InterruptedException {
     	
     	OpenCentralReeltab();
@@ -29,7 +28,7 @@ public class Reel_Script<MobileElement, Rotatable> extends Functions {
      
             
 
-    @Test(priority = 2)
+    @Test(priority = 2, alwaysRun = true)
     public void SearchReelTest2() throws InterruptedException, MalformedURLException {
 
         
@@ -1116,14 +1115,8 @@ public void ReelsftercomingfromBackground19() throws InterruptedException, Malfo
    
 
 
-	@AfterMethod
-	
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
     }
-}
+
 
 
 

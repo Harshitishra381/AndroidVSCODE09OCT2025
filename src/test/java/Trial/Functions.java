@@ -1,27 +1,23 @@
 package Trial;
 
-import org.testng.annotations.AfterMethod;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.WebDriverWait;
-
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.time.Duration;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.MobileElement;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.nativekey.AndroidKey;
 import io.appium.java_client.android.nativekey.KeyEvent;
-
-import org.openqa.selenium.support.ui.ExpectedCondition;
-
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.testng.annotations.BeforeMethod;
-
-import java.net.MalformedURLException;
-import java.net.URL;
 
 
 public class Functions  {
@@ -30,20 +26,25 @@ public class Functions  {
 
 
 	
-    public static void clickAndWaitForElementWithXpath1(final String xpath) {
-    	
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
-        ExpectedCondition<Boolean> condition = (WebDriver arg0) -> {
-            try {
-                WebElement element = (driver).findElement(By.xpath(xpath));
-                element.click();
-                return true;
-            } catch (Exception e) {
-                return false;
-            }
-        };
-        wait.until(condition);
+  public static void clickAndWaitForElementWithXpath1(final String xpath) {
+    if (driver == null) {
+        System.out.println("Driver is null, cannot click element");
+        return;
     }
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+    try {
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
+        element.click();
+    } catch (Exception e) {
+        try {
+            WebElement element = driver.findElement(By.xpath(xpath));
+            ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
+        } catch (Exception ex) {
+            System.out.println("Failed to click element: " + ex.getMessage());
+        }
+    }
+}
+
     
     
     
@@ -82,35 +83,26 @@ public class Functions  {
     
     
 
-    public static void clickAndWaitForElementWithId(final String id) {
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
-        @SuppressWarnings("Convert2Lambda")
-        ExpectedCondition<Boolean> condition = new ExpectedCondition<Boolean>() {
-            @Override
-            public Boolean apply(WebDriver arg0) {
-                try {
-                    WebElement element = (driver).findElement(By.id(id));
-
-//				    	(driver).findElement(null);
-                    element.click();
-                    return true;
-                } catch (Exception e) {
-                    return false;
-                }
-            }
-        };
-        wait.until(condition);
+   public static void clickAndWaitForElementWithId(final String id) {
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+    try {
+        WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
+        element.click();
+    } catch (Exception e) {
+        WebElement element = driver.findElement(By.id(id));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", element);
     }
+}
 
-    // Function for if else element
 
-    public static boolean isVisibleWithId(final String id) {
-        boolean isVisible;
+
+    public static  boolean isVisibleWithId(final String id) {
+          boolean isVisible;
         isVisible = !driver.findElements(By.id(id)).isEmpty();
         return isVisible;
     }
 
-    public static boolean isVisibleWithXPath1(final String xPath) {
+    public static  boolean isVisibleWithXPath1(final String xPath) {
         boolean isVisible;
         isVisible = !driver.findElements(By.xpath(xPath)).isEmpty();
         return isVisible;
@@ -118,72 +110,60 @@ public class Functions  {
     
     
 
-    public static boolean isVisibleWithClass(final String className) {
+    public  boolean isVisibleWithClass(final String className) {
         return !driver.findElements(By.className(className)).isEmpty();
     }
 
 
  public static void OpenLivetStream () throws InterruptedException {
-    	
-	 driver.findElement(By.xpath("//*[contains(@text,'Following')]")).click();
-     System.out.println("TC01- Following tab opened");
-     Thread.sleep(1000);
-  
-         if (isVisibleWithId("com.threesixteen.app:id/player_layout")) {
-        	  clickAndWaitForElementWithId("com.threesixteen.app:id/player_layout");
-        	     System.out.println("TC02- First Live session Opened from following tab");
-        	     Thread.sleep(1000);
-//                 SkipSurvey();
-
-
-     	}
-     	else
-     	{
-
-            driver.findElement(By.xpath("//*[contains(@text,'Pro Streams')]")).click();
-            System.out.println("TC01- Pro tab opened");
-            Thread.sleep(1000);
-//     		 driver.findElement(By.xpath("//*[contains(@text,'Following')]")).click();
-//              System.out.println("TC01- pro tab opened");
-//              Thread.sleep(1000);
-              clickAndWaitForElementWithId("com.threesixteen.app:id/player_layout");
-              System.out.println("TC02- First Live session Opened");
-              Thread.sleep(2000);
-//              SkipSurvey();
-
-          	}
-     	
-         Thread.sleep(5000);
-	    
-
-       
-
-//
-//     clickAndWaitForElementWithId("com.threesixteen.app:id/player_layout");
-//     System.out.println("TC02- First Live session Opened");
-//     Thread.sleep(2000);
-     if (isVisibleWithXPath1("/hierarchy/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.ImageView"))
-     {
-         System.out.println("TCCC- AdBlocker detected");
-         Thread.sleep(2000);
-         driver.navigate().back();
-         Thread.sleep(2000);
-     if (isVisibleWithId("com.threesixteen.app:id/iv_close")) 
-     {
-         clickAndWaitForElementWithId("com.threesixteen.app:id/iv_close");
-         }
     
-         clickAndWaitForElementWithId("com.threesixteen.app:id/thumbnail");
-         System.out.println("TC11- stream opened from recomendations ");
-         Thread.sleep(2000);
-	        SkipSurvey();
+ 
 
-     }
-    
+if (isVisibleWithXPath1("//*[contains(@text,'Following')]")) {
+    clickAndWaitForElementWithXpath1("//*[contains(@text,'Following')]");
+    System.out.println("TC01 - Following tab opened");
+        Thread.sleep(5000);
+
+
+} else
+  {
+    clickAndWaitForElementWithXpath1("//*[contains(@text, 'Pro Streams')]");
+    // driver.findElement(By.xpath("//*[contains(@text,'Pro Streams')]")).click();
+    System.out.println("TC01 - Pro Streams tab opened");
+        Thread.sleep(5000);
+
+
 }
 
+        Thread.sleep(5000);
 
-   
+    clickAndWaitForElementWithId("com.threesixteen.app:id/player_layout");
+    System.out.println("TC02 - First Live session opened");
+    Thread.sleep(10000);
+
+if (isVisibleWithXPath1("/hierarchy/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.ImageView")) {
+    System.out.println("⚠️ TCCC - AdBlocker detected");
+
+    driver.navigate().back();
+    Thread.sleep(2000);
+
+    if (isVisibleWithId("com.threesixteen.app:id/iv_close")) {
+        clickAndWaitForElementWithId("com.threesixteen.app:id/iv_close");
+    }
+
+    // if (isVisibleWithId("com.threesixteen.app:id/thumbnail")) {
+    //     clickAndWaitForElementWithId("com.threesixteen.app:id/thumbnail");
+    //     System.out.println(" TC11 - Stream opened from recommendations");
+    //     Thread.sleep(5000);
+    // } else {
+    //     System.out.println("❌ TC11 - Recommendation thumbnail not found.");
+    // }
+}
+
+Thread.sleep(1000);
+
+ }
+
     
 
 
@@ -191,9 +171,9 @@ public class Functions  {
 public static void miniplayertofullplayerSwitch() throws InterruptedException {
      int repeats = 10;
      for (int i = 0; i < repeats; i++) {
-         Thread.sleep(2000);
+         Thread.sleep(1000);
          driver.navigate().back();
-         Thread.sleep(2000);
+         Thread.sleep(1000);
          clickAndWaitForElementWithId("com.threesixteen.app:id/player_touch_anchor");
      }
      System.out.println("F--> " + repeats + " times Mini Player to Full screen done");
@@ -202,6 +182,7 @@ public static void miniplayertofullplayerSwitch() throws InterruptedException {
  
  
  public static void PIPSwitch() throws InterruptedException {
+     Thread.sleep(1000);
      for (int i = 1; i <= 10; i++) {
          if (isVisibleWithId("com.threesixteen.app:id/tv_time_and_watching")) {
              try {
@@ -210,16 +191,16 @@ public static void miniplayertofullplayerSwitch() throws InterruptedException {
                  } else {
                      System.out.println("Driver is not an instance of AndroidDriver");
                  }
-                 Thread.sleep(3000);
+                 Thread.sleep(1000);
              } catch (Exception e) {
-                 System.out.println("Error pressing HOME key or sleeping: " + e.getMessage());
+                 System.out.println("Error pressing HOME key or waiting: " + e.getMessage());
              }
          }
          try {
              clickAndWaitForElementWithXpath1("//android.widget.TextView[@content-desc=\"Rooter\"]");
-             Thread.sleep(3000);
+             Thread.sleep(1000);
          } catch (Exception e) {
-             System.out.println("Error clicking Rooter icon or sleeping: " + e.getMessage());
+             System.out.println("Error clicking Rooter icon or waiting: " + e.getMessage());
          }
      }
      System.out.println("F--> PIP switch done 20 times");
@@ -920,90 +901,48 @@ private static void clickAndWaitForElementWithtext(String string) {
  
  
 public static void TabSwitch() throws InterruptedException {
-	
-	if (isVisibleWithXPath1("//android.view.View[@content-desc=\"Reels\"]")) {
-	    for (int i = 0; i < 5; i++) {
-	     
-	        clickAndWaitForElementWithXpath1(
-	            "//android.view.View[@content-desc=\"Reels\"]"); 
-if (isVisibleWithXPath1("//*[contains(@text,'Continue Watching')]")) {
-	clickAndWaitForElementWithXpath1("//*[contains(@text,'Continue Watching')]");
+                            Thread.sleep(2000);
+
+    for (int i = 1; i <= 3; i++) {
+                    SkipCollectCoinBottomSheet();
+
+       
+            if (isVisibleWithXPath1("//android.view.View[@content-desc=\"Reels\"]")) {
+                clickAndWaitForElementWithXpath1("//android.view.View[@content-desc=\"Reels\"]");
+                System.out.println("reel tab clicked");
+            }
+                        Thread.sleep(2000);
+
+            SkipCollectCoinBottomSheet();
+            if (isVisibleWithXPath1("//android.view.View[@content-desc=\"Rewards\"]")) {
+                clickAndWaitForElementWithXpath1("//android.view.View[@content-desc=\"Rewards\"]");
+                System.out.println("reward tab clicked");
+            }
+                        Thread.sleep(2000);
+
+            SkipCollectCoinBottomSheet();
+            
+            if (isVisibleWithXPath1("//android.view.View[@content-desc=\"Home\"]")) {
+                clickAndWaitForElementWithXpath1("//android.view.View[@content-desc=\"Home\"]");
+                System.out.println("home tab clicked");
+            }
+
+                        Thread.sleep(2000);
+                        SkipCollectCoinBottomSheet();
+
+            if (isVisibleWithXPath1("//android.view.View[@content-desc=\"Explore\"]")) {
+                clickAndWaitForElementWithXpath1("//android.view.View[@content-desc=\"Explore\"]");
+                System.out.println("explore tab clicked");
+            }
+
+                        Thread.sleep(2000);
+                                SkipCollectCoinBottomSheet();
+
+        }
+    
+    System.out.println("F--> Simplified Tabs Switch Done");
 } 
-	        clickAndWaitForElementWithXpath1(
-		            "//android.view.View[@content-desc=\"Home\"]");
-	        SkipCollectCoinBottomSheet();
-	        if (isVisibleWithXPath1("//*[contains(@text,'Continue Watching')]")) {
-	        	clickAndWaitForElementWithXpath1("//*[contains(@text,'Continue Watching')]");
-	        } 
-        clickAndWaitForElementWithXpath1(
-	            "//android.view.View[@content-desc=\"Shop\"]");
-        if (isVisibleWithXPath1("//*[contains(@text,'Continue Watching')]")) {
-        	clickAndWaitForElementWithXpath1("//*[contains(@text,'Continue Watching')]");
-        } 
-	          Thread.sleep(1000);
-              driver.navigate().back();
-	          Thread.sleep(1000);
-	          if (isVisibleWithXPath1("//*[contains(@text,'Continue Watching')]")) {
-	        		clickAndWaitForElementWithXpath1("//*[contains(@text,'Continue Watching')]");
-	        	} 
-	        clickAndWaitForElementWithXpath1(
-	            "//android.view.View[@content-desc=\"Explore\"]");
-	        if (isVisibleWithXPath1("//*[contains(@text,'Continue Watching')]")) {
-	        	clickAndWaitForElementWithXpath1("//*[contains(@text,'Continue Watching')]");
-	        } 
-	        
-	         clickAndWaitForElementWithXpath1(
-	        		 "//android.view.View[@content-desc=\"Games\"]");
-	         if (isVisibleWithXPath1("//*[contains(@text,'Continue Watching')]")) {
-	        		clickAndWaitForElementWithXpath1("//*[contains(@text,'Continue Watching')]");
-	        	} 
 
-	        clickAndWaitForElementWithXpath1(
-	        		"//android.view.View[@content-desc=\"Rewards\"]");
-	        if (isVisibleWithXPath1("//*[contains(@text,'Continue Watching')]")) {
-	        	clickAndWaitForElementWithXpath1("//*[contains(@text,'Continue Watching')]");
-	        } 
-	        
-	        System.out.println("F--> Tabs Switch Done " + (i + 1) + " times");
-
-	    }
-	}
-	else
-	{
-		 for (int i = 0; i < 5; i++) {
-		        clickAndWaitForElementWithXpath1(
-		            "//android.widget.FrameLayout[@content-desc=\"Reels\"]");
-		        if (isVisibleWithXPath1("//*[contains(@text,'Continue Watching')]")) {
-		        	clickAndWaitForElementWithXpath1("//*[contains(@text,'Continue Watching')]");
-		        } 
-		        clickAndWaitForElementWithXpath1(
-			            "//android.widget.FrameLayout[@content-desc=\"Home\"]");
-		        if (isVisibleWithXPath1("//*[contains(@text,'Continue Watching')]")) {
-		        	clickAndWaitForElementWithXpath1("//*[contains(@text,'Continue Watching')]");
-		        } 
-		        clickAndWaitForElementWithXpath1(
-		            "//android.widget.FrameLayout[@content-desc=\"Shop\"]");
-		        if (isVisibleWithXPath1("//*[contains(@text,'Continue Watching')]")) {
-		        	clickAndWaitForElementWithXpath1("//*[contains(@text,'Continue Watching')]");
-		        } 
-		        clickAndWaitForElementWithXpath1(
-		            "//android.widget.FrameLayout[@content-desc=\"Explore\"]");
-		        if (isVisibleWithXPath1("//*[contains(@text,'Continue Watching')]")) {
-		        	clickAndWaitForElementWithXpath1("//*[contains(@text,'Continue Watching')]");
-		        } 
-//		         clickAndWaitForElementWithXpath1(
-//		        		 "//android.view.View[@content-desc=\"Games\"]");
-		        clickAndWaitForElementWithXpath1(
-		        		"//android.widget.FrameLayout[@content-desc=\"Win Coins\"]");
-		        if (isVisibleWithXPath1("//*[contains(@text,'Continue Watching')]")) {
-		        	clickAndWaitForElementWithXpath1("//*[contains(@text,'Continue Watching')]");
-		        } 
-		        
-		        System.out.println("F--> Tabs Switch Done " + (i + 1) + " times");
-		 }
-	}
-
-	}
 
 
 
@@ -1211,8 +1150,8 @@ public static void OpenNotificationtab() throws InterruptedException {
  
 public void TestShareCount() throws InterruptedException {
     
-    MobileElement element = (MobileElement) driver.findElement(By.id("com.threesixteen.app:id/tv_num_shares"));
-    String initialShareCount = ((WebElement) element).getText();
+    WebElement element = driver.findElement(By.id("com.threesixteen.app:id/tv_num_shares"));
+    String initialShareCount = element.getText();
     System.out.println("TC03- Initial share count is " + initialShareCount);
     Thread.sleep(2000);
 
@@ -1249,8 +1188,8 @@ public void TestShareCount() throws InterruptedException {
     
    
     
-    MobileElement element2 = (MobileElement) driver.findElement(By.id("com.threesixteen.app:id/tv_num_shares"));
-    String initialShareCount11 = ((WebElement) element2).getText();
+    WebElement element2 = driver.findElement(By.id("com.threesixteen.app:id/tv_num_shares"));
+    String initialShareCount11 = element2.getText();
     System.out.println("TC09- Initial share count is " + initialShareCount11);
     Thread.sleep(2000);
     
@@ -1269,8 +1208,8 @@ public void TestShareCount() throws InterruptedException {
     driver.navigate().back();
     Thread.sleep(15000);
 
-    MobileElement element111 = (MobileElement) driver.findElement(By.id("com.threesixteen.app:id/tv_num_shares"));
-    String updatedShareCount1 = ((WebElement) element111).getText();
+    WebElement element111 = driver.findElement(By.id("com.threesixteen.app:id/tv_num_shares"));
+    String updatedShareCount1 = element111.getText();
     System.out.println("TC12- Updated share count is " + updatedShareCount1);
     Thread.sleep(2000);
 
@@ -1568,8 +1507,8 @@ else
 public void  ThemeChange() throws InterruptedException {
 	
     OpenSideNav();
-    MobileElement element = (MobileElement) driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[3]/android.widget.GridView/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.TextView[2]"));
-    String CurrentTheme = ((WebElement) element).getText();  // No need to cast to WebElement
+    WebElement element = driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[3]/android.widget.GridView/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.TextView[2]"));
+    String CurrentTheme = element.getText();  // No need to cast to WebElement
     System.out.println("TC03- CurrentTheme is " + CurrentTheme);  
     driver.findElement(By.xpath("//*[contains(@text,'Theme')]")).click();
     System.out.println("TC02- Click on themes");
@@ -1674,88 +1613,78 @@ public void CheckVideoProgress() throws InterruptedException {
 
 
 
-public void SkipAd() throws InterruptedException {
 
-	
-	for (int i =0; i<= 3; i++) {
+    public static void SkipAd() throws InterruptedException {
+            Thread.sleep(5000); 
+    JavascriptExecutor js = (JavascriptExecutor) driver;
 
-	
-	  Thread.sleep(5000);
-	  if (isVisibleWithXPath1("//android.widget.ImageButton[@content-desc=\"Close\"]"))  {	         			 
-			 clickAndWaitForElementWithXpath1("//android.widget.ImageButton[@content-desc=\"Close\"]") ;
-		        System.out.println("AD01- Google Ads sheet closed");
+    // List of all possible ad close / skip button XPaths
+    String[] adXpaths = {
+        "//android.widget.ImageButton[@content-desc=\"Close\"]",
+        "//android.widget.ImageButton[@content-desc='Close']",
+        "//*[contains(@text,'Close')]",
+        "//*[contains(@text,'Skip video')]",
+        "//*[contains(@text,'Continue')]",
+        "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[5]/android.view.View/android.widget.Button",
+        "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.Button",
+        "//android.widget.FrameLayout[@content-desc=\"IAInterstitialView\"]/android.widget.FrameLayout[2]/android.widget.FrameLayout[2]/android.widget.ImageView",
+        "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[2]/android.widget.Button"
+    };
 
-	  }
-	  if (isVisibleWithXPath1("//*[contains(@text,'Close')]"))  { 
-			 clickAndWaitForElementWithXpath1("//*[contains(@text,'Close')]") ;
-		     System.out.println("AD02- Clicked on close ad button");
-		            	  } 
+    for (int i = 0; i < 5; i++) {
+        for (String xpath : adXpaths) {
+            if (isVisibleWithXPath1(xpath)) {
+                try {
+                    WebElement element = driver.findElement(By.xpath(xpath));
 
-	  if (isVisibleWithXPath1("//*[contains(@text,'Skip video')]"))  { 
-		clickAndWaitForElementWithXpath1("//*[contains(@text,'Skip video')]") ;
-		System.out.println("AD03- Clicked on skip video ad button");
-			  }
-			  
-		if (isVisibleWithXPath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View"))  {	         			 
-		
-		clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View") ;
-		System.out.println("AD04- Clicked on cross icon of intersticial ad");
-		
-		}
-		
-		if (isVisibleWithXPath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View"))  {	         			 
-		
-		clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View") ;
-		   System.out.println("AD05- Clicked on cross icon of intersticial ad");
-		
-		}
-	        if (isVisibleWithXPath1("//android.widget.ImageButton[@content-desc=\"Close\"]"))  {	         			 
- 			 clickAndWaitForElementWithXpath1("//android.widget.ImageButton[@content-desc=\"Close\"]") ;
-	        System.out.println("AD01- Google Ads sheet closed");
+                    // Try normal click first
+                    try {
+                        element.click();
+                        System.out.println("Clicked via normal click → " + xpath);
+                                            Thread.sleep(15000);
 
- 	    }
- 			 
-	        if (isVisibleWithXPath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.Button"))
-	        {	         			 
- 			 clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.Button") ;
- 		     System.out.println("AD06- Clicked on cross icon of intersticial ad");
+                    } catch (Exception e1) {
+                     
+                        try {
+                            js.executeScript("arguments[0].click();", element);
+                            System.out.println("Clicked via JavaScriptExecutor → " + xpath);
+                        } catch (Exception e2) {
+                            System.out.println("Failed JS click for: " + xpath);
+                                                Thread.sleep(15000);
 
-	        }
- 			 	
-	        if (isVisibleWithXPath1("//android.widget.FrameLayout[@content-desc=\"IAInterstitialView\"]/android.widget.FrameLayout[2]/android.widget.FrameLayout[2]/android.widget.ImageView"))  {	         			 
-    			 clickAndWaitForElementWithXpath1("//android.widget.FrameLayout[@content-desc=\"IAInterstitialView\"]/android.widget.FrameLayout[2]/android.widget.FrameLayout[2]/android.widget.ImageView") ;
-		        System.out.println("AD07- AD closed");
+                        }
+                    }
 
-    	  }
-	        
-	        
-	        if (isVisibleWithXPath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[2]/android.widget.Button"))  {	         			 
-   			 clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[2]/android.widget.Button") ;
-		        System.out.println("AD08- AD closed");
+                    Thread.sleep(5000);
+                } catch (Exception e) {
+                    System.out.println("Element not interactable: " + xpath);
+                }
+            }
+        }
 
-   	     }
-	        
-	        if (isVisibleWithXPath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View")) {
-	        	Thread.sleep(1000);
-			driver.navigate().back();
-			System.out.println("AD09- intersticial ads closed");
+        // Handle cases where none of the buttons are visible → try back navigation
+        // if (isVisibleWithXPath1("//android.webkit.WebView/android.view.View")) {
+        //     try {
+        //         driver.navigate().back();
+        //         System.out.println("Navigated back to close ad (fallback)");
+        //         Thread.sleep(1000);
+        //     } catch (Exception e) {
+        //         System.out.println("Failed to navigate back");
+        //     }
+        // }
 
-	        }
-	        
-	        
-	        
-	       
-	}
-	
+        Thread.sleep(5000); 
+    }
+
+    System.out.println("Ad closing sequence completed");
 }
-
 
 
 
 
 public void SkipAdBeforeAppLaunch() throws InterruptedException {
 		 
-	  Thread.sleep(1000);
+	  Thread.sleep(30000);
 	  if (isVisibleWithXPath1("//android.widget.ImageButton[@content-desc=\"Close\"]"))  {	         			 
 			 clickAndWaitForElementWithXpath1("//android.widget.ImageButton[@content-desc=\"Close\"]") ;
 		        System.out.println("AD01- Google Ads sheet closed");
@@ -1793,6 +1722,13 @@ clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.
 	        if (isVisibleWithXPath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.Button"))
 	        {	         			 
  			 clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.Button") ;
+ 		     System.out.println("AD02- Clicked on cross icon of intersticial ad");
+
+	        }
+
+             if (isVisibleWithXPath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[5]"))
+	        {	         			 
+ 			 clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[5]") ;
  		     System.out.println("AD02- Clicked on cross icon of intersticial ad");
 
 	        }
@@ -1883,43 +1819,45 @@ public static void CheckReelProgress() throws InterruptedException {
     @BeforeMethod
     public void setup() throws MalformedURLException, InterruptedException  {
 
-        DesiredCapabilities cap = new DesiredCapabilities();
-        URL url = new URL("http://127.0.0.1:4723/wd/hub/");
-        driver = new AndroidDriver(url, cap);
-    
-        
-       DesiredCapabilities cap1 = new DesiredCapabilities();	 
+      
    
 
-       
-       cap.setCapability("deviceName", "6381e3e");
-       cap1.setCapability("platformName", "Android");
-       cap1.setCapability("platformVersion", "14");
-       cap1.setCapability("automationName", "UiAutomator2");
-//       cap1.setCapability("platformVersion", "12");
-//	   cap.setCapability("deviceName", "5SU4BEVW7H9LPZAE");
-       cap1.setCapability("appPackage", "com.threesixteen.app");
-//     cap.setCapability("appPackage", "com.threesixteen.app.dev");
-       cap1.setCapability("appActivity", "com.threesixteen.app.ui.activities.SplashActivity");
-       cap1.setCapability("autoGrantPermissions", true);
-       cap1.setCapability("ignoreHiddenApiPolicyError", true); // <-- This line is the fix
-       cap1.setCapability("disableSuppressAccessibilityService", true);
+            DesiredCapabilities caps = new DesiredCapabilities();
+            caps.setCapability("platformName", "Android");
+            caps.setCapability("platformVersion", "14");
+            caps.setCapability("deviceName", "13793294180004Z");
+            caps.setCapability("automationName", "UiAutomator2");
+            caps.setCapability("appPackage", "com.threesixteen.app");
+            caps.setCapability("appActivity", "com.threesixteen.app.ui.activities.SplashActivity");
+            caps.setCapability("autoGrantPermissions", true);
+            caps.setCapability("ignoreHiddenApiPolicyError", true);
+            caps.setCapability("disableSuppressAccessibilityService", true);
+            caps.setCapability("noReset", true);
 
-       cap1.setCapability("noReset", true);
-//       cap1.setCapability("chromedriver_autodownload", true);
-//       cap1.setCapability("chromedriverExecutableDir", "/Users/rooter/Downloads/chromedriver-mac-x64");
-//       cap1.setCapability("chromedriverExecutable", "/usr/local/Caskroom/chromedriver/132.0.6834.110/chromedriver");
-//       cap1.setCapability("appium:skipDeviceInitialization", true);
-//       cap1.setCapability("appium:skipServerInstallation", false); 
-//       cap1.setCapability("disableWindowAnimation", true); 
-//       cap1.setCapability("skipUnlock", true); 
-    
-       
-       URL url1 = new URL("http://127.0.0.1:4723/wd/hub/");
-		driver = new AndroidDriver(url1, cap1);
+            URL url = new URL("http://127.0.0.1:4723/wd/hub/");
+            driver = new AndroidDriver(url, caps); 
 
+     
+     
+        
+        
+if (isVisibleWithXPath1("//android.widget.ImageButton[@content-desc=\"Close\"]")) {
+    driver.navigate().back();
+    System.out.println("Exist from Ad");
+                Thread.sleep(10000);
+       }
        System.out.println("Application started");
         Thread.sleep(3000);
+  
+
+
+// if (isVisibleWithXPath1("//android.widget.ImageButton[@content-desc=\"Close\"]")) {
+//     driver.navigate().back();
+//     System.out.println("Exist from Ad");
+//                 Thread.sleep(10000);
+//        }
+      
+
   
         
         if (isVisibleWithXPath1("//android.widget.ImageView[@content-desc=\"Dismiss update dialog\"]"))  {
@@ -1993,14 +1931,22 @@ public static void CheckReelProgress() throws InterruptedException {
 	
 	
 	
+	
+    
+   
+
+
+
+
+
+	
+	
 	@AfterMethod
 	
-    public static void tearDown() {
+    public void tearDown() {
         if (driver != null) {
             driver.quit();
         }
     }
+
 }
-
-
-

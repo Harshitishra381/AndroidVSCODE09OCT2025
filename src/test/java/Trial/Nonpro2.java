@@ -1,6 +1,5 @@
 package Trial;
 
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
@@ -403,12 +402,5 @@ public class Nonpro2<MobileElement> extends Functions{
 	
 	
 	
-	@AfterMethod
-	
 
-    public static void tearDown() {
-        if (driver != null) {
-            driver.quit();
-        }
-    }
 }
