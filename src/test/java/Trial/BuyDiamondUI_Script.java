@@ -4,12 +4,12 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.NoSuchElementException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
@@ -80,7 +80,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	
 
 	@Test(priority = 3)
-	public void Diamondpurchase3() throws InterruptedException {
+	public void Diamond10purchase3() throws InterruptedException {
 
 		OpenSideNav();
       String targetText = "Buy Diamonds";
@@ -102,9 +102,24 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
         }
         driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
         System.out.println("Clicking on: " + targetText);
-        if (isVisibleWithXPath1("//*[contains(@text,'₹ 10')]")) {
-        driver.findElement(By.xpath("//*[contains(@text,'₹ 10')]")).click();
-		System.out.println("TC05 -Click on 10RS Diamond card");
+        String targetText1 = "₹ 10";
+	        boolean textFound1 = false;
+	        int maxScrolls1 = 5; 
+
+	        for (int i = 0; i < maxScrolls1 && !textFound1; i++) {
+	            try {
+	                driver.findElement(
+	               		 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + targetText + "\"))"));         
+	                textFound = true;
+	                System.out.println("TC02- Product description scrolled and found");
+	            } catch (Exception e) {
+	                driver.findElement(
+	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
+	            }
+	        }
+	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText1 + "')]")).click();
+	        System.out.println("Clicking on: " + targetText1);
+	        Thread.sleep(1000);  
 		clickAndWaitForElementWithId("com.threesixteen.app:id/btn_buy");
 		System.out.println("TC06 -Click on Buy now");
 		clickAndWaitForElementWithId("com.threesixteen.app:id/tv_proceed_dcd");
@@ -115,16 +130,12 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		Thread.sleep(1000);
 		driver.navigate().back();
 		Thread.sleep(1000);        }
-        else
-        {
-    		System.out.println("TC08 - 10Rs Diamond pack nnot available");
-
-        }
+       
 //        clickAndWaitForElementWithId("net.one97.paytm:id/tv_yes");
 //        System.out.println("TC09 -Click cancel payment");
 //        clickAndWaitForElementWithId("com.threesixteen.app:id/btn_close");
 //        System.out.println("TC10 -Click on close");
-	}
+	
 
 
 
@@ -133,7 +144,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 
 	@Test(priority = 4)
 
-	public void DiamondPurchase4() throws InterruptedException {
+	public void Diamond29Purchase4() throws InterruptedException {
 	
 		OpenSideNav();
 		 String targetText = "Buy Diamonds";
@@ -181,7 +192,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	}
 
 	@Test(priority = 5)
-	public void DiamondPurchase5() throws InterruptedException {
+	public void Diamond50Purchase5() throws InterruptedException {
 
 		OpenSideNav();
         String targetText = "Buy Diamonds";
@@ -204,9 +215,24 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
 		System.out.println("Clicking on: " + targetText);
 		Thread.sleep(1000);  
-		if (isvisbileWithXpath1("//*[contains(@text,'₹ 50')]")) {
-		driver.findElement(By.xpath("//*[contains(@text,'₹ 50')]")).click();
-		System.out.println("TC17 -Click on 50RS Diamond card");
+		String targetText1 = "₹ 50";
+	        boolean textFound1 = false;
+	        int maxScrolls1 = 5; 
+
+	        for (int i = 0; i < maxScrolls1 && !textFound1; i++) {
+	            try {
+	                driver.findElement(
+	               		 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + targetText + "\"))"));         
+	                textFound = true;
+	                System.out.println("TC02- Product description scrolled and found");
+	            } catch (Exception e) {
+	                driver.findElement(
+	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
+	            }
+	        }
+	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText1 + "')]")).click();
+	        System.out.println("Clicking on: " + targetText1);
+	        Thread.sleep(1000);  
 		clickAndWaitForElementWithId("com.threesixteen.app:id/btn_buy");
 		System.out.println("TC18 -Click on Buy now");
 		clickAndWaitForElementWithId("com.threesixteen.app:id/tv_proceed_dcd");
@@ -217,16 +243,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		Thread.sleep(1000);
 		driver.navigate().back();
 		Thread.sleep(1000);		}
-		else
-		{
-			System.out.println("TC20 - 50rs pack not avaible right now ");
 		
-		}
-		//        clickAndWaitForElementWithId("net.one97.paytm:id/tv_yes");
-		//        System.out.println("TC21 -Click cancel payment");
-		//        clickAndWaitForElementWithId("com.threesixteen.app:id/btn_close");
-		//        System.out.println("TC22 -Click on close");
-			}
 	
 	
 
@@ -237,7 +254,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 
 
 	@Test(priority = 6)
-	public void DiamondPurchase6() throws InterruptedException {
+	public void Diamond100Purchase6() throws InterruptedException {
 
 		OpenSideNav();
 		 String targetText = "Buy Diamonds";
@@ -259,9 +276,24 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	        }
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
 	        System.out.println("Clicking on: " + targetText);
-		if(isVisibleWithXPath1("//*[contains(@text,'₹ 100')]")) {
-		driver.findElement(By.xpath("//*[contains(@text,'₹ 100')]")).click();
-		System.out.println("TC23 -Click on 100RS Diamond card");
+		String targetText1 = "₹ 100";
+	        boolean textFound1 = false;
+	        int maxScrolls1 = 5; 
+
+	        for (int i = 0; i < maxScrolls1 && !textFound1; i++) {
+	            try {
+	                driver.findElement(
+	               		 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + targetText + "\"))"));         
+	                textFound = true;
+	                System.out.println("TC02- Product description scrolled and found");
+	            } catch (Exception e) {
+	                driver.findElement(
+	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
+	            }
+	        }
+	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText1 + "')]")).click();
+	        System.out.println("Clicking on: " + targetText1);
+	        Thread.sleep(1000);  
 		clickAndWaitForElementWithId("com.threesixteen.app:id/btn_buy");
 		System.out.println("TC24 -Click on Buy now");
 		clickAndWaitForElementWithId("com.threesixteen.app:id/tv_proceed_dcd");
@@ -272,19 +304,10 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		Thread.sleep(2000);
 		driver.navigate().back();
 		Thread.sleep(1000);		}
-		else
-		{
-			System.out.println("TC26 -100rs diamond pack not available");
-
-		}
-//        clickAndWaitForElementWithId("net.one97.paytm:id/tv_yes");
-//        System.out.println("TC27 -Click cancel payment");
-//        clickAndWaitForElementWithId("com.threesixteen.app:id/btn_close");
-//        System.out.println("TC28 -Click on close");
-	}
+		
 
 	@Test(priority = 7)
-	public void DiamondPurchase7() throws InterruptedException {
+	public void Diamond250Purchase7() throws InterruptedException {
 
 		OpenSideNav();
 		 String targetText = "Buy Diamonds";
@@ -306,10 +329,24 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	        }
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
 	        System.out.println("Clicking on: " + targetText);
-	        if (isVisibleWithXPath1("//*[contains(@text,'₹ 250')]")) {
-	     
-			driver.findElement(By.xpath("//*[contains(@text,'₹ 250')]")).click();
-		System.out.println("TC29 -Click on 250RS Diamond card");
+	       String targetText1 = "₹ 250";
+	        boolean textFound1 = false;
+	        int maxScrolls1 = 5; 
+
+	        for (int i = 0; i < maxScrolls1 && !textFound1; i++) {
+	            try {
+	                driver.findElement(
+	               		 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + targetText + "\"))"));         
+	                textFound = true;
+	                System.out.println("TC02- Product description scrolled and found");
+	            } catch (Exception e) {
+	                driver.findElement(
+	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
+	            }
+	        }
+	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText1 + "')]")).click();
+	        System.out.println("Clicking on: " + targetText1);
+	        Thread.sleep(1000);  
 		clickAndWaitForElementWithId("com.threesixteen.app:id/btn_buy");
 		System.out.println("TC30 -Click on Buy now");
 		clickAndWaitForElementWithId("com.threesixteen.app:id/tv_proceed_dcd");
@@ -321,22 +358,13 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		driver.navigate().back();
 		Thread.sleep(1000);
 		}
-	        else
-	        {
-	    		System.out.println("TC32 - 250rs pack not available");
-
-	        }
-//        clickAndWaitForElementWithId("net.one97.paytm:id/tv_yes");
-//        System.out.println("TC33 -Click cancel payment");
-//        clickAndWaitForElementWithId("com.threesixteen.app:id/btn_close");
-//        System.out.println("TC34 -Click on close");
-	}
+	       
 
 	
 	
 	
 	@Test(priority = 8)
-	public void DiamondPurchase8() throws InterruptedException {
+	public void Diamond500Purchase8() throws InterruptedException {
 
 		OpenSideNav();
 		 String targetText = "Buy Diamonds";
@@ -358,9 +386,24 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	        }
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
 	        System.out.println("Clicking on: " + targetText);
-       if (isVisibleWithXPath1("//*[contains(@text,'₹ 500')]")) {
-       driver.findElement(By.xpath("//*[contains(@text,'₹ 500')]")).click();
-		System.out.println("TC35 -Click on 500RS Diamond card");
+      String targetText1 = "₹ 500";
+	        boolean textFound1 = false;
+	        int maxScrolls1 = 5; 
+
+	        for (int i = 0; i < maxScrolls1 && !textFound1; i++) {
+	            try {
+	                driver.findElement(
+	               		 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + targetText + "\"))"));         
+	                textFound = true;
+	                System.out.println("TC02- Product description scrolled and found");
+	            } catch (Exception e) {
+	                driver.findElement(
+	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
+	            }
+	        }
+	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText1 + "')]")).click();
+	        System.out.println("Clicking on: " + targetText1);
+	        Thread.sleep(1000);  
 		clickAndWaitForElementWithId("com.threesixteen.app:id/btn_buy");
 		System.out.println("TC36 -Click on Buy now");
 		clickAndWaitForElementWithId("com.threesixteen.app:id/tv_proceed_dcd");
@@ -372,17 +415,9 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		driver.navigate().back();
 		Thread.sleep(1000);
 		}
-       else
-       {
-   		System.out.println("TC38 -500 rs pack not available");
+      
 
-       }
-//        clickAndWaitForElementWithId("net.one97.paytm:id/tv_yes");
-//        System.out.println("TC39 -Click cancel payment");
-//        clickAndWaitForElementWithId("com.threesixteen.app:id/btn_close");
-//        System.out.println("TC40 -Click on close");
-
-	}
+	
 
 	@Test(priority = 9)
 	public void Diamond600Purchase9() throws InterruptedException {
@@ -408,9 +443,25 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	        }
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
 	        System.out.println("Clicking on: " + targetText);
-	    	if (isVisibleWithXPath1("//*[contains(@text,'₹ 600')]")) {
-	    		driver.findElement(By.xpath("//*[contains(@text,'₹ 600')]")).click();
-			System.out.println("TC41 -Click on 600RS Diamond card");
+
+	    	String targetText1 = "₹ 600";
+	        boolean textFound1 = false;
+	        int maxScrolls1 = 5; 
+
+	        for (int i = 0; i < maxScrolls1 && !textFound1; i++) {
+	            try {
+	                driver.findElement(
+	               		 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + targetText + "\"))"));         
+	                textFound = true;
+	                System.out.println("TC02- Product description scrolled and found");
+	            } catch (Exception e) {
+	                driver.findElement(
+	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
+	            }
+	        }
+	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText1 + "')]")).click();
+	        System.out.println("Clicking on: " + targetText1);
+	        Thread.sleep(1000);  
 			clickAndWaitForElementWithId("com.threesixteen.app:id/btn_buy");
 			System.out.println("TC42 -Click on Buy now");
 			clickAndWaitForElementWithId("com.threesixteen.app:id/tv_proceed_dcd");
@@ -423,20 +474,11 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 			Thread.sleep(1000);
 			
 		}
-	    	else
-	    	{
-				System.out.println("TC44 - 600 rs pack not available");
+	    
 
-	    		
-	    	}
-//        clickAndWaitForElementWithId("net.one97.paytm:id/tv_yes");
-//        System.out.println("TC45 -Click cancel payment");
-//        clickAndWaitForElementWithId("com.threesixteen.app:id/btn_close");
-//        System.out.println("TC46 -Click on close");
-	}
 
 	@Test(priority = 10)
-	public void DiamondPurchase10() throws InterruptedException {
+	public void Diamond5Purchase10() throws InterruptedException {
 
 		OpenSideNav();
 		 String targetText = "Buy Diamonds";
@@ -457,9 +499,26 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
 	        System.out.println("Clicking on: " + targetText);
 	        Thread.sleep(1000);  
-	        if (isVisibleWithXPath1("//*[contains(@text,'₹ 5')]")) {
-	    		driver.findElement(By.xpath("//*[contains(@text,'₹ 5')]")).click();
-			System.out.println("TC41 -Click on 600RS Diamond card");
+
+			String targetText1 = "₹ 5";
+	        boolean textFound1 = false;
+	        int maxScrolls1 = 5; 
+
+	        for (int i = 0; i < maxScrolls1 && !textFound1; i++) {
+	            try {
+	                driver.findElement(
+	               		 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + targetText + "\"))"));         
+	                textFound = true;
+	                System.out.println("TC02- Product description scrolled and found");
+	            } catch (Exception e) {
+	                driver.findElement(
+	                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
+	            }
+	        }
+	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText1 + "')]")).click();
+	        System.out.println("Clicking on: " + targetText1);
+	        Thread.sleep(1000);  
+	     
 			clickAndWaitForElementWithId("com.threesixteen.app:id/btn_buy");
 			System.out.println("TC42 -Click on Buy now");
 			clickAndWaitForElementWithId("com.threesixteen.app:id/tv_proceed_dcd");
@@ -472,13 +531,8 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 			Thread.sleep(1000);
 			
 		}
-	    	else
-	    	{
-				System.out.println("TC44 - 600 rs pack not available");
-
-	    		
-	    	}
-	}
+	    	
+	
 	
 	
 
@@ -597,7 +651,7 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
             
 
         }
-        // Print or log repeating texts
+        
         for (Map.Entry<String, Integer> entry : textCountMap.entrySet()) {
             if (entry.getValue() > 2) {
                 System.out.println("Repeating text: " + entry.getKey() + ", Count: " + entry.getValue());
@@ -634,32 +688,26 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	        }
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
 	        System.out.println("Clicking on: " + targetText);
-		
+		   Thread.sleep(1000);
 	        clickAndWaitForElementWithId("com.threesixteen.app:id/tv_gems");
 			System.out.println("TC01 -Open diamond log ");
-            WebDriverWait methodWait = new WebDriverWait(driver, Duration.ofSeconds(5));
-            methodWait.until(ExpectedConditions.presenceOfElementLocated(By.className("android.webkit.WebView")));
-            
-            if (isVisibleWithClass("android.webkit.WebView")) {
+           		   Thread.sleep(5000);
+
+            if (isVisibleWithXPath1("//android.webkit.WebView/android.view.View/android.widget.TextView[2]")) {
     			System.out.println("TC02 -Diamond payout webview is opend ");
-                methodWait.until(ExpectedConditions.elementToBeClickable(By.id("com.threesixteen.app:id/tv_gems")));
-                driver.navigate().back();
-    			System.out.println("TC03 -Back from Diamond payout webview");
+                
+				// clickAndWaitForElementWithXpath1("//android.webkit.WebView/android.webkit.WebView/android.view.View/android.widget.TextView[7]");
+    			// System.out.println("TC03 -payout webview opened");
 
-                methodWait.until(ExpectedConditions.elementToBeClickable(By.id("com.threesixteen.app:id/tv_gems")));
-
-                clickAndWaitForElementWithId("com.threesixteen.app:id/tv_gems");
-    			System.out.println("TC04 -Open diamond log Again ");
             }
             else
             {
-                driver.findElement(By.xpath("//*[contains(@text,'Pro Streams')]")).click();
              			System.out.println("TC04 -Diamond payout wbeview not opened");
+						throw new NoSuchElementException("WebView not found");
             }
 	}
 	
                 
 	
 	
-
 }

@@ -10,9 +10,22 @@
     </listeners>
 
     <classes>
-    <class name="Trial.LikesCount_Script"/>
+           <class name="Trial.Coin_Count"/>
+            <class name="Trial.LikesCount_Script"/>
             <class name="Trial.CommentCount_Script"/>
-                <class name="Trial.Coin_Count"/>
+           <class name="Trial.LiveStream_script"/>
+            <class name="Trial.Reel_Script"/>
+            <class name="Trial.Video_Script"/>
+           <class name="Trial.SideNav_Script"/>
+           <class name="Trial.Search_Script"/>   
+            <class name="Trial.TaskPage_Script"/>
+             <class name="Trial.GiftStickerandMagicChat_Script"/>  
+            <class name="Trial.BuyDiamondUI_Script"/>
+            <class name="Trial.InAppNotification_Script"/>  
+            <class name="Trial.ContestPage_Script"/>    
+            <class name="Trial.SelfProfile_Script"/>
+            <class name="Trial.Explorepage_Script"/>
+            <class name="Trial.Pro"/>  
 
     </classes>
   </test>

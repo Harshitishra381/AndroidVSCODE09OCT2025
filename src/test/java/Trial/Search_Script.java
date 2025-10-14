@@ -345,9 +345,9 @@ public class Search_Script<MobileElement, Rotatable> extends Functions {
     
     
 
-    @Test(priority = 9)
+    @Test(priority = 10)
     
-    public void MinecraftSearchReelTest9() throws InterruptedException, MalformedURLException {
+    public void MinecraftSearchReelTest10() throws InterruptedException, MalformedURLException {
 
     	OpenSearch();
         clickAndWaitForElementWithId("com.threesixteen.app:id/title_image");
@@ -370,9 +370,9 @@ public class Search_Script<MobileElement, Rotatable> extends Functions {
     
     
 	
-    @Test(priority = 10)
+    @Test(priority = 11)
 
-    public void SearchVideoPlayerLikeWatchNWin10() throws InterruptedException {
+    public void SearchVideoPlayerLikeWatchNWin11() throws InterruptedException {
 
     	OpenSearch();
         Thread.sleep(1000);
@@ -412,9 +412,9 @@ public class Search_Script<MobileElement, Rotatable> extends Functions {
     }
     
  
- @Test(priority = 11)
+ @Test(priority = 12)
     
-    public void BGMISearchReelTest11() throws InterruptedException, MalformedURLException {
+    public void BGMISearchReelTest12() throws InterruptedException, MalformedURLException {
 
      	OpenSearch();
         clickAndWaitForElementWithId("com.threesixteen.app:id/title_image");
@@ -434,9 +434,9 @@ public class Search_Script<MobileElement, Rotatable> extends Functions {
     }
  
  
- @Test(priority = 12)
+ @Test(priority = 13)
  
- public void PUBGSearchReelTest12() throws InterruptedException, MalformedURLException {
+ public void PUBGSearchReelTest13() throws InterruptedException, MalformedURLException {
 
  	OpenSearch();
      clickAndWaitForElementWithId("com.threesixteen.app:id/title_image");
@@ -457,10 +457,10 @@ public class Search_Script<MobileElement, Rotatable> extends Functions {
     
 	
  
- @Test(priority = 13)
+ @Test(priority = 14)
  
  
- public void MinecraftSearchVideoTest13() throws InterruptedException, MalformedURLException {
+ public void MinecraftSearchVideoTest14() throws InterruptedException, MalformedURLException {
     
  	OpenSearch();
      clickAndWaitForElementWithId("com.threesixteen.app:id/title_image");
@@ -497,10 +497,10 @@ public class Search_Script<MobileElement, Rotatable> extends Functions {
  
  
  
- @Test(priority = 14)
+ @Test(priority = 15)
  
  
- public void GTASearchVideoTest14() throws InterruptedException, MalformedURLException {
+ public void GTASearchVideoTest15() throws InterruptedException, MalformedURLException {
     
  	OpenSearch();
      clickAndWaitForElementWithId("com.threesixteen.app:id/title_image");
@@ -528,9 +528,9 @@ public class Search_Script<MobileElement, Rotatable> extends Functions {
  
  
 
- @Test(priority = 15)
+ @Test(priority = 16)
  
- public void GTASearchReelTest15() throws InterruptedException, MalformedURLException {
+ public void GTASearchReelTest16() throws InterruptedException, MalformedURLException {
 
  	OpenSearch();
      clickAndWaitForElementWithId("com.threesixteen.app:id/title_image");
@@ -554,10 +554,10 @@ public class Search_Script<MobileElement, Rotatable> extends Functions {
  
  
  
- @Test(priority = 16)
+ @Test(priority = 17)
  
  
- public void GTASearchCreatorList16() throws InterruptedException, MalformedURLException {
+ public void GTASearchCreatorList17() throws InterruptedException, MalformedURLException {
 
  	OpenSearch();
      clickAndWaitForElementWithId("com.threesixteen.app:id/title_image");
@@ -578,10 +578,10 @@ public class Search_Script<MobileElement, Rotatable> extends Functions {
  }
 	
  
-@Test(priority = 17)
+@Test(priority = 18)
  
  
- public void MinecreftSearchCreatorList17() throws InterruptedException, MalformedURLException {
+ public void MinecreftSearchCreatorList18() throws InterruptedException, MalformedURLException {
 
     	OpenSearch();
      clickAndWaitForElementWithId("com.threesixteen.app:id/title_image");
@@ -604,10 +604,10 @@ public class Search_Script<MobileElement, Rotatable> extends Functions {
 
 
 
-@Test(priority = 18)
+@Test(priority = 19)
 
 
-public void PUBGSearchCreatorList18() throws InterruptedException, MalformedURLException {
+public void PUBGSearchCreatorList19() throws InterruptedException, MalformedURLException {
 
 	OpenSearch();
     clickAndWaitForElementWithId("com.threesixteen.app:id/title_image");
@@ -630,10 +630,10 @@ public void PUBGSearchCreatorList18() throws InterruptedException, MalformedURLE
 
 
 
-@Test(priority = 19)
+@Test(priority = 20)
 
 
-			public void SearchVideoUITest19() throws InterruptedException, MalformedURLException {
+			public void SearchVideoUITest20() throws InterruptedException, MalformedURLException {
 			   
 				OpenSearch();
 			    Thread.sleep(1000);
@@ -723,9 +723,9 @@ public void PUBGSearchCreatorList18() throws InterruptedException, MalformedURLE
 				
 			 
 			
-			@Test(priority = 20)
+			@Test(priority = 21)
 			
-			public void SearchLiveUITest20() throws InterruptedException, MalformedURLException {
+			public void SearchLiveUITest21() throws InterruptedException, MalformedURLException {
 			   
 				OpenSearch();
 			    Thread.sleep(1000);
@@ -799,10 +799,10 @@ public void PUBGSearchCreatorList18() throws InterruptedException, MalformedURLE
 			}
 	
  
-@Test(priority = 21)
+@Test(priority = 22)
 
 
-		public void BGMISearchCreatortabTest21() throws InterruptedException, MalformedURLException {
+		public void BGMISearchCreatortabTest22() throws InterruptedException, MalformedURLException {
 		
 			OpenSearch();
 		    clickAndWaitForElementWithId("com.threesixteen.app:id/title_image");
@@ -823,10 +823,10 @@ public void PUBGSearchCreatorList18() throws InterruptedException, MalformedURLE
 		}
 		
 		
-		@Test(priority = 22)
+		@Test(priority = 23)
 		
 		
-		public void PUBGSearchCreatortabTest22() throws InterruptedException, MalformedURLException {
+		public void PUBGSearchCreatortabTest23() throws InterruptedException, MalformedURLException {
 		
 			OpenSearch();
 			Thread.sleep(1000);
@@ -851,10 +851,10 @@ public void PUBGSearchCreatorList18() throws InterruptedException, MalformedURLE
 		
 		
 		
-		@Test(priority = 23)
+		@Test(priority = 24)
 		
 		
-		public void GTASearchCreatortabTest23() throws InterruptedException, MalformedURLException {
+		public void GTASearchCreatortabTest24() throws InterruptedException, MalformedURLException {
 		
 			OpenSearch();
 			Thread.sleep(1000);
@@ -876,10 +876,10 @@ public void PUBGSearchCreatorList18() throws InterruptedException, MalformedURLE
 		
 		
 		
-		@Test(priority = 24)
+		@Test(priority = 25)
 		
 		
-		public void MinecraftSearchCreatortabTest24() throws InterruptedException, MalformedURLException {
+		public void MinecraftSearchCreatortabTest25() throws InterruptedException, MalformedURLException {
 		
 			OpenSearch();
 		    clickAndWaitForElementWithId("com.threesixteen.app:id/title_image");
@@ -901,9 +901,9 @@ public void PUBGSearchCreatorList18() throws InterruptedException, MalformedURLE
 		
 		
 		
-		@Test(priority = 25)
+		@Test(priority = 26)
 		
-			public void OtherProfileFollowingFollowerlist25() throws InterruptedException, MalformedURLException 
+			public void OtherProfileFollowingFollowerlist26() throws InterruptedException, MalformedURLException 
 		{
 				
 			   OpenSearch();

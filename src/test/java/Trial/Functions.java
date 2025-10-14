@@ -31,7 +31,7 @@ public class Functions  {
         System.out.println("Driver is null, cannot click element");
         return;
     }
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(100));
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
     try {
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.xpath(xpath)));
         element.click();
@@ -84,7 +84,7 @@ public class Functions  {
     
 
    public static void clickAndWaitForElementWithId(final String id) {
-    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(200));
+    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(60));
     try {
         WebElement element = wait.until(ExpectedConditions.elementToBeClickable(By.id(id)));
         element.click();
@@ -903,7 +903,7 @@ private static void clickAndWaitForElementWithtext(String string) {
 public static void TabSwitch() throws InterruptedException {
                             Thread.sleep(2000);
 
-    for (int i = 1; i <= 3; i++) {
+    for (int i = 1; i <= 5; i++) {
                     SkipCollectCoinBottomSheet();
 
        
@@ -937,10 +937,10 @@ public static void TabSwitch() throws InterruptedException {
 
                         Thread.sleep(2000);
                                 SkipCollectCoinBottomSheet();
+     System.out.println("F--> Simplified Tabs Switch Done");
 
         }
     
-    System.out.println("F--> Simplified Tabs Switch Done");
 } 
 
 
@@ -1625,6 +1625,7 @@ public void CheckVideoProgress() throws InterruptedException {
         "//*[contains(@text,'Close')]",
         "//*[contains(@text,'Skip video')]",
         "//*[contains(@text,'Continue')]",
+        "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[4]/android.view.View/android.widget.Button",
         "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[4]/android.view.View[2]/android.widget.Button",
         "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[5]/android.view.View/android.widget.Button",
         "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.Button",
@@ -1632,7 +1633,7 @@ public void CheckVideoProgress() throws InterruptedException {
         "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.FrameLayout/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[2]/android.view.View[2]/android.widget.Button"
     };
 
-    for (int i = 0; i < 5; i++) {
+    for (int i = 0; i < 6; i++) {
         for (String xpath : adXpaths) {
             if (isVisibleWithXPath1(xpath)) {
                 try {
@@ -1642,7 +1643,7 @@ public void CheckVideoProgress() throws InterruptedException {
                     try {
                         element.click();
                         System.out.println("Clicked via normal click → " + xpath);
-                                            Thread.sleep(15000);
+                                            Thread.sleep(2000);
 
                     } catch (Exception e1) {
                      
@@ -1651,12 +1652,12 @@ public void CheckVideoProgress() throws InterruptedException {
                             System.out.println("Clicked via JavaScriptExecutor → " + xpath);
                         } catch (Exception e2) {
                             System.out.println("Failed JS click for: " + xpath);
-                                                Thread.sleep(15000);
+                                                Thread.sleep(2000);
 
                         }
                     }
 
-                    Thread.sleep(5000);
+                    Thread.sleep(2000);
                 } catch (Exception e) {
                     System.out.println("Element not interactable: " + xpath);
                 }
@@ -1834,6 +1835,8 @@ public static void CheckReelProgress() throws InterruptedException {
             caps.setCapability("ignoreHiddenApiPolicyError", true);
             caps.setCapability("disableSuppressAccessibilityService", true);
             caps.setCapability("noReset", true);
+            caps.setCapability("setWebContentsDebuggingEnabled", true);
+        caps.setCapability("chromedriverExecutable", "/usr/local/bin/chromedriver");
 
             URL url = new URL("http://127.0.0.1:4723/wd/hub/");
             driver = new AndroidDriver(url, caps); 
@@ -1849,7 +1852,30 @@ if (isVisibleWithXPath1("//android.widget.ImageButton[@content-desc=\"Close\"]")
        }
        System.out.println("Application started");
         Thread.sleep(3000);
-  
+
+if (isVisibleWithId("com.threesixteen.app:id/et_mobile")) {
+    clickAndWaitForElementWithId("com.threesixteen.app:id/et_mobile");
+    System.out.println("Login bar clicked");
+
+    if (isVisibleWithId("com.google.android.gms:id/cancel")) {
+        clickAndWaitForElementWithId("com.google.android.gms:id/cancel");
+    }
+
+     (driver).findElement(By.id("com.threesixteen.app:id/et_mobile")).sendKeys("4545454123");
+    // Wait before proceeding
+    Thread.sleep(2000);
+    clickAndWaitForElementWithId("com.threesixteen.app:id/btn_send");
+    System.out.println("Clicked on continue button");
+
+    Thread.sleep(2000);
+
+  (driver).findElement(By.id("com.threesixteen.app:id/et_ot")).sendKeys("454545");
+
+    System.out.println("Entered OTP");
+        Thread.sleep(5000);
+
+}
+
 
 
 // if (isVisibleWithXPath1("//android.widget.ImageButton[@content-desc=\"Close\"]")) {
@@ -1908,6 +1934,7 @@ if (isVisibleWithXPath1("//android.widget.ImageButton[@content-desc=\"Close\"]")
         System.out.println("TC06- Click on OK");
         Thread.sleep(10000);
         }
+
         
         SkipAdBeforeAppLaunch();
 //        if (isVisibleWithXPath1("//*[contains(@text,'Close')]"))  { 
@@ -1915,6 +1942,8 @@ if (isVisibleWithXPath1("//android.widget.ImageButton[@content-desc=\"Close\"]")
 //		     System.out.println("AD02- Clicked on close ad button");
 //		            	  } 
         SkipCollectCoinBottomSheet();
+             
+
    }
 
     

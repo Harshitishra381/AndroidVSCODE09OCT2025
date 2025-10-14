@@ -89,7 +89,7 @@ public class GmailEmailSender {
     
     public static void sendViaMailgun(String reportPath) {
         try {
-            // Mailgun free tier (no credit card required for 5000 emails/month)
+            
             String mailgunUrl = "https://api.mailgun.net/v3/sandbox-123.mailgun.org/messages";
             String apiKey = "key-demo123"; // Free sandbox key
             

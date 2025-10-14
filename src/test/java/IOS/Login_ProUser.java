@@ -31,6 +31,7 @@ public class Login_ProUser  {
            cap.setCapability("ignoreHiddenApiPolicyError", true);
            cap.setCapability("noReset", false);
            cap.setCapability("deviceName", "iPhone Simulator");
+           cap.setCapability("webkitDebugProxyPort", 27753);
 
            URL url = new URL("http://127.0.0.1:4723/wd/hub/");
            driver = new AppiumDriver(url, cap);

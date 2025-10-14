@@ -237,6 +237,13 @@ public class DetailedHtmlReportListener implements ITestListener {
         writer.println("</body></html>");
         writer.close();
         
+        
+        try {
+            Thread.sleep(30000); 
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+        }
+        
         // Send via Gmail (free)
         GmailSender.sendReport(reportFilePath);
     }

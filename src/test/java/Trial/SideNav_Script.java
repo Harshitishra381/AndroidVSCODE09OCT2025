@@ -1,12 +1,17 @@
 package Trial;
 
 import java.net.MalformedURLException;
+import java.util.NoSuchElementException;
+import java.util.Set;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
+import io.appium.java_client.android.AndroidDriver;
+import io.appium.java_client.remote.SupportsContextSwitching;
 
 public class SideNav_Script<MobileElement, Rotatable> extends Functions {
 
@@ -15,7 +20,7 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
  
 
     @Test(priority = 1)
-    public void CreatebtnIRL1() throws InterruptedException, MalformedURLException {
+    public void SidenavCreatebtnIRL1() throws InterruptedException, MalformedURLException {
 
         OpenSideNav();
         Thread.sleep(1000);
@@ -278,18 +283,20 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
         Thread.sleep(1000);
         clickAndWaitForElementWithId("com.threesixteen.app:id/layout_esports");
         System.out.println("TC03- Click on lIVE STREAM");
-        Thread.sleep(3000);
+        Thread.sleep(1000);
+        if (isVisibleWithId("com.threesixteen.app:id/game_container")) {
+            clickAndWaitForElementWithId("com.threesixteen.app:id/game_container");}
 //        clickAndWaitForElementWithXpath1("//*[contains(@text,'Next - Stream Settings')]");
 
         clickAndWaitForElementWithXpath1("//*[contains(@text,'Next - Stream Settings')]");
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         clickAndWaitForElementWithId("com.threesixteen.app:id/img_back");
-        Thread.sleep(3000);
+        Thread.sleep(1000);
         clickAndWaitForElementWithId("com.threesixteen.app:id/img_back");
         System.out.println("TC04- Back from live stream");
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         OpenSideNav();
-        Thread.sleep(2000);
+        Thread.sleep(1000);
         clickAndWaitForElementWithXpath1("//*[contains(@text,'Create')]");
         System.out.println("TC06- Click on create");
         Thread.sleep(1000);
@@ -347,18 +354,21 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
         }
         driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
         System.out.println("Clicking on: " + targetText);
-        Thread.sleep(1000);
-        SkipSurvey();
+        Thread.sleep(10000);
+        // SkipSurvey();
        SkipAd();
-       SkipAd();
-//        clickAndWaitForElementWithXpath1("//android.widget.LinearLayout[@content-desc=\"Redeemed\"]");
-//        System.out.println("TC13- Redemmed section  open in Rewards");
-//        Thread.sleep(1000);
+              SkipAd();
 
-//        clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[2]/android.widget.GridView/android.widget.FrameLayout[1]");
-       clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[2]/android.view.View[3]/android.view.View");
+
+if (isvisibleithXpath1("//android.widget.LinearLayout[@content-desc=\"Gaming\"]")){
+       driver.findElement(By.xpath("//android.widget.LinearLayout[@content-desc=\"Gaming\"]")).click();
         System.out.println("TC02- Gaming section  open in Rewards");
-       
+
+    }
+    if (isvisibleithXpath1("//android.widget.LinearLayout[@content-desc=\"Redeemed\"]")){
+       driver.findElement(By.xpath("//android.widget.LinearLayout[@content-desc=\"Redeemed\"]")).click();
+        System.out.println("TC02- redeemed section  open in Rewards");
+    }
      
        clickAndWaitForElementWithId("com.threesixteen.app:id/tv_user_coins");
        System.out.println("TC03- Coins count is coming on reward page");
@@ -1056,13 +1066,12 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
 //        SkipSurvey();
 //         SkipAd();
 //         SkipAd();
-//
+//.       if (isvisibleithXpath1("//android.widget.LinearLayout[@content-desc=\"Redeemed\"]"))
 //        clickAndWaitForElementWithXpath1("//android.widget.LinearLayout[@content-desc=\"Redeemed\"]");
 //        System.out.println("TC03- Redemmed section  open in Rewards");
 //        if (isvisibleithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.LinearLayout/androidx.viewpager.widget.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[1]/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button"))
 //        {
 //        	clickAndWaitForElementWithXpath1(
-//        
 //                "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.LinearLayout/androidx.viewpager.widget.ViewPager/android.widget.FrameLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.widget.FrameLayout[1]/android.view.ViewGroup/android.view.ViewGroup/android.widget.Button");
 //        System.out.println("TC04- clicked on copy button");
 //        }
@@ -1094,57 +1103,121 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
         }
         driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
         System.out.println("Clicking on: " + targetText);
+                Thread.sleep(1000);
         SkipSurvey();
          SkipAd();
-//        clickAndWaitForElementWithXpath1(
-//                "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.LinearLayout/android.view.ViewGroup/android.widget.ImageView");
-//        System.out.println("TC04- Top carousal is working");
-//        Thread.sleep(1000);
-
+         if (isVisibleWithId("com.threesixteen.app:id/iv_announcement"))
+         {
+        	 System.out.println("TC03- Top carousal is visible");
+         }
+         else
+         {
+        	 throw new NoSuchElementException("Top carousal is not visible");
+         }
+      
     }
-    
     
     
 
     @Test(priority = 24)
     public void SideNavBuyyPro24() throws InterruptedException {
 
-        OpenSideNav();
-        Thread.sleep(1000);
-        if (isVisibleWithXPath1("//android.widget.ImageView[@content-desc=\"Pro\"]")) 
-        {
-            if (isvisibleithXpath1("//*[contains(@text,'Extend Pro')]")) 
-            {
-            driver.findElement(By.xpath("//*[contains(@text,'Extend Pro')]")).click();
-            System.out.println("TC02- Click onn Extend pro");
-            Thread.sleep(1000);
-            driver.navigate().back();
-            Thread.sleep(1000);
-            driver.navigate().back();
-            System.out.println("TC03- Back from Extend pro");
-            Thread.sleep(1000);
-            OpenSideNav();
+        // OpenSideNav();
+        // Thread.sleep(1000);
+        // Set<String> contexts = ((io.appium.java_client.remote.SupportsContextSwitching) driver).getContextHandles();
+        // for (String context : contexts) {
+        //     if (context.toLowerCase().contains("webview")) {
+        //         ((io.appium.java_client.remote.SupportsContextSwitching) driver).context(context);
+        //         break;
+        //     }
+        //     System.out.println("Available context: " + context);
+        // }
 
-            clickAndWaitForElementWithId("com.threesixteen.app:id/txt_name");
-            System.out.println("TC05- opens self profile");
-            Thread.sleep(1000);
-            clickAndWaitForElementWithId("com.threesixteen.app:id/pro_user_icon");
-            System.out.println("TC06- Profile badges present on profile page");
-            }
-        } 
-        else 
-        {
-            if (isvisibleithXpath1("//*[contains(@text,'Buy Pro')]"))  
-            {
+        // JavascriptExecutor js = (JavascriptExecutor) driver;
 
-            driver.findElement(By.xpath("//*[contains(@text,'Buy Pro')]")).click();
-            System.out.println("TC07- Click on Buy pro");
-            Thread.sleep(1000);
-            driver.navigate().back();
-            System.out.println("TC08- Back from Buy pro");
-            Thread.sleep(1000);
-            }
-        }
+        // if (isVisibleWithXPath1("//android.widget.ImageView[@content-desc=\"Pro\"]")) {
+        //     if (isvisibleithXpath1("//*[contains(@text,'Extend Pro')]")) {
+
+        //         js.executeScript("document.evaluate(\"//*[contains(text(), 'Extend Pro')]\"," +
+        //                         "document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)" +
+        //                         ".singleNodeValue.click();");
+
+        //         System.out.println("TC02 - Clicked on Extend Pro");
+        //         Thread.sleep(1000);
+
+        //         driver.navigate().back();
+        //         Thread.sleep(1000);
+        //         driver.navigate().back();
+        //         System.out.println("TC03 - Back from Extend Pro");
+        //         Thread.sleep(1000);
+
+        //         OpenSideNav();
+
+        //         clickAndWaitForElementWithId("com.threesixteen.app:id/txt_name");
+        //         System.out.println("TC05 - Opened self profile");
+        //         Thread.sleep(1000);
+
+        //         clickAndWaitForElementWithId("com.threesixteen.app:id/pro_user_icon");
+        //         System.out.println("TC06 - Profile badges present on profile page");
+        //     }
+        // } else {
+        //     if (isvisibleithXpath1("//*[contains(@text,'Buy Pro')]")) {
+
+        //         // Use JavaScript to click "Buy Pro"
+        //         js.executeScript("document.evaluate(\"//*[contains(text(), 'Buy Pro')]\"," +
+        //                         "document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null)" +
+        //                         ".singleNodeValue.click();");
+
+        //         System.out.println("TC07 - Clicked on Buy Pro");
+        //         Thread.sleep(1000);
+
+        //         driver.navigate().back();
+        //         System.out.println("TC08 - Back from Buy Pro");
+        //         Thread.sleep(1000);
+        //     }
+        //     else
+        //     {
+        //         throw new NoSuchElementException("Neither 'Extend Pro' nor 'Buy Pro' button found.");
+        //     }
+        // }
+
+        // ((io.appium.java_client.remote.SupportsContextSwitching) driver).context("NATIVE_APP");
+        //     System.out.println("Switched back to native context");
+
+        // // if (isVisibleWithXPath1("//android.widget.ImageView[@content-desc=\"Pro\"]")) 
+        // // {
+        // //     if (isvisibleithXpath1("//*[contains(@text,'Extend Pro')]")) 
+        // //     {
+        // //     driver.findElement(By.xpath("//*[contains(@text,'Extend Pro')]")).click();
+        // //     System.out.println("TC02- Click onn Extend pro");
+        // //     Thread.sleep(1000);
+        // //     driver.navigate().back();
+        // //     Thread.sleep(1000);
+        // //     driver.navigate().back();
+        // //     System.out.println("TC03- Back from Extend pro");
+        // //     Thread.sleep(1000);
+        // //     OpenSideNav();
+
+        // //     clickAndWaitForElementWithId("com.threesixteen.app:id/txt_name");
+        // //     System.out.println("TC05- opens self profile");
+        // //     Thread.sleep(1000);
+        // //     clickAndWaitForElementWithId("com.threesixteen.app:id/pro_user_icon");
+        // //     System.out.println("TC06- Profile badges present on profile page");
+        // //     }
+        // // } 
+        // // else 
+        // // {
+        // //     if (isvisibleithXpath1("//*[contains(@text,'Buy Pro')]"))  
+        // //     {
+
+        // //     driver.findElement(By.xpath("//*[contains(@text,'Buy Pro')]")).click();
+        // //     System.out.println("TC07- Click on Buy pro");
+        // //     Thread.sleep(1000);
+        // //     driver.navigate().back();
+        // //     System.out.println("TC08- Back from Buy pro");
+        // //     Thread.sleep(1000);
+        // //     }
+        // // }
 
     }
 
@@ -1294,10 +1367,11 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
 
         clickAndWaitForElementWithId("com.threesixteen.app:id/txt_coins");
         System.out.println("TC05- Opened Coin log");
-        Thread.sleep(1000);
+        Thread.sleep(10000);
         SkipAd();
-        clickAndWaitForElementWithId("com.threesixteen.app:id/iv_back");
-        System.out.println("TC05- back from coin log");
+        clickAndWaitForElementWithId("com.threesixteen.app:id/tv_user_coins");
+        System.out.println("TC05- Coin log opened");
+        
 
     
     }
@@ -1869,164 +1943,148 @@ public class SideNav_Script<MobileElement, Rotatable> extends Functions {
 
         OpenSideNav();
         Thread.sleep(1000);
-        if (isvisibleithXpath1("//*[contains(@text,'Buy Pro')]")) {
-        String targetText = "Buy Pro";
-        boolean textFound = false;
-        int maxScrolls = 5; 
 
-        for (int i = 0; i < maxScrolls && !textFound; i++) {
-            try {
-                driver.findElement(
-               		 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + targetText + "\"))"));         
-                textFound = true;
-                System.out.println("TC02- Product description scrolled and found");
-            } catch (Exception e) {
-                driver.findElement(
-                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-                Thread.sleep(1000); 
-            }
-        }
-        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
-        System.out.println("Clicking on: " + targetText);
+        
+        clickAndWaitForElementWithId("com.threesixteen.app:id/tv_pro_lrps");
+        System.out.println("TC02- open pro");
         Thread.sleep(3000);  
 
+       clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[3]/android.view.View/android.view.View/android.widget.TextView[4]");
+   System.out.println("TC03- pro page opened");
+           Thread.sleep(3000);  
 
-//        clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[4]/android.view.View[3]/android.widget.Button[1]");
-//      System.out.println("TC03- click on buy button for 7 day");
-//      Thread.sleep(3000);  
+     clickAndWaitForElementWithXpath1("//android.view.View[@content-desc=\"Rooter Subscribe Again Rooter\"]/android.widget.Image[2]");
+      System.out.println("TC03- click on subscribe again");
+      Thread.sleep(3000); 
 
-      clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[4]/android.view.View[3]/android.view.View[1]/android.widget.Button[1]");
-      System.out.println("TC03- click on buy button for 1 day");
+     clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[4]/android.view.View[3]/android.view.View[1]/android.widget.Button[3]");
+      System.out.println("TC03- pro pack visible");
       Thread.sleep(3000);  
-      clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[4]/android.view.View[3]/android.widget.Button[1]");
-      System.out.println("TC03- click on buy button for 1 day");
-      Thread.sleep(3000);  
-      
-//    driver.findElement(By.xpath("//*[contains(@text,'Continue')]")).click();
-//    System.out.println("TC03- click on continue");
-//    Thread.sleep(3000);  
-        }
-       
+
     }
+       
     
     
     
     
-    @Test(priority = 37)
-    public void day7buypro37() throws InterruptedException {
+    
+//     @Test(priority = 37)
+//     public void day7buypro37() throws InterruptedException {
 
-        OpenSideNav();
-        Thread.sleep(1000);
-        if (isvisibleithXpath1("//*[contains(@text,'Buy Pro')]")) {
-        String targetText = "Buy Pro";
-        boolean textFound = false;
-        int maxScrolls = 5; 
+//         OpenSideNav();
+//         Thread.sleep(1000);
+//         if (isvisibleithXpath1("//*[contains(@text,'Buy Pro')]")) {
+//         String targetText = "Buy Pro";
+//         boolean textFound = false;
+//         int maxScrolls = 5; 
 
-        for (int i = 0; i < maxScrolls && !textFound; i++) {
-            try {
-                driver.findElement(
-               		 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + targetText + "\"))"));         
-                textFound = true;
-                System.out.println("TC02- Product description scrolled and found");
-            } catch (Exception e) {
-                driver.findElement(
-                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-                Thread.sleep(1000); 
-            }
-        }
-        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
-        System.out.println("Clicking on: " + targetText);
-        Thread.sleep(3000);  
+//         for (int i = 0; i < maxScrolls && !textFound; i++) {
+//             try {
+//                 driver.findElement(
+//                		 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + targetText + "\"))"));         
+//                 textFound = true;
+//                 System.out.println("TC02- Product description scrolled and found");
+//             } catch (Exception e) {
+//                 driver.findElement(
+//                     AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
+//                 Thread.sleep(1000); 
+//             }
+//         }
+//         driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
+//         System.out.println("Clicking on: " + targetText);
+//         Thread.sleep(3000);  
 
 
-        clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[4]/android.view.View[3]/android.widget.Button[1]");
-      System.out.println("TC03- click on buy button for 7 day");
-      Thread.sleep(3000);  
-        }
+//         clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[4]/android.view.View[3]/android.widget.Button[1]");
+//       System.out.println("TC03- click on buy button for 7 day");
+//       Thread.sleep(3000);  
+//         }
       
-//    driver.findElement(By.xpath("//*[contains(@text,'Continue')]")).click();
-//    System.out.println("TC03- click on continue");
-//    Thread.sleep(3000);  
+// //    driver.findElement(By.xpath("//*[contains(@text,'Continue')]")).click();
+// //    System.out.println("TC03- click on continue");
+// //    Thread.sleep(3000);  
 
        
-    }
+//     }
     
     
     
     
     
-    @Test(priority = 38)
-    public void day7buypro338() throws InterruptedException {
+//     @Test(priority = 38)
+//     public void day7buypro338() throws InterruptedException {
 
-        OpenSideNav();
-        if (isvisibleithXpath1("//*[contains(@text,'Buy Pro')]")) {
-        Thread.sleep(3000);  
-        String targetText = "Buy Pro";
-        boolean textFound = false;
-        int maxScrolls = 5; 
+//         OpenSideNav();
+//         if (isvisibleithXpath1("//*[contains(@text,'Buy Pro')]")) {
+//         Thread.sleep(3000);  
+//         String targetText = "Buy Pro";
+//         boolean textFound = false;
+//         int maxScrolls = 5; 
 
-        for (int i = 0; i < maxScrolls && !textFound; i++) {
-            try {
-                driver.findElement(
-               		 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + targetText + "\"))"));         
-                textFound = true;
-//                System.out.println("TC02- Product description scrolled and found");
-            } catch (Exception e) {
-                driver.findElement(
-                    AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-                Thread.sleep(1000); 
-            }
-        }
-        Thread.sleep(3000);  
-        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
-        System.out.println("Clicking on: " + targetText);
-        Thread.sleep(5000);  
-        driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[4]/android.view.View[3]/android.view.View[1]/android.widget.Button[2]")).click();    
-        System.out.println("TC03- click on buy button for week subscription day");
-        Thread.sleep(3000);  
-          }
+//         for (int i = 0; i < maxScrolls && !textFound; i++) {
+//             try {
+//                 driver.findElement(
+//                		 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + targetText + "\"))"));         
+//                 textFound = true;
+// //                System.out.println("TC02- Product description scrolled and found");
+//             } catch (Exception e) {
+//                 driver.findElement(
+//                     AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
+//                 Thread.sleep(1000); 
+//             }
+//         }
+//         Thread.sleep(3000);  
+//         driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
+//         System.out.println("Clicking on: " + targetText);
+//         Thread.sleep(5000);  
+//         driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[4]/android.view.View[3]/android.view.View[1]/android.widget.Button[2]")).click();    
+//         System.out.println("TC03- click on buy button for week subscription day");
+//         Thread.sleep(3000);  
+//           }
       
-//    driver.findElement(By.xpath("//*[contains(@text,'Continue')]")).click();
-//    System.out.println("TC03- click on continue");
-//    Thread.sleep(3000);  
+// //    driver.findElement(By.xpath("//*[contains(@text,'Continue')]")).click();
+// //    System.out.println("TC03- click on continue");
+// //    Thread.sleep(3000);  
 
        
-    }
+//     }
     
     
     
     @Test(priority = 39)
     public void DonationLeaderbaord39() throws InterruptedException {
 
-    
-    OpenSideNav();
-    Thread.sleep(2000); 
+        OpenSideNav();
+Thread.sleep(1000);
 
-    
-    String targetText = "Donation Leaderboard";
-    boolean textFound = false;
-    int maxScrolls = 5; 
+String targetText = "Donation Leaderboard";
+boolean textFound = false;
+int maxScrolls = 5;
 
-    for (int i = 0; i < maxScrolls && !textFound; i++) {
-        try {
-            driver.findElement(
-           		 AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(new UiSelector().text(\"" + targetText + "\"))"));         
-            textFound = true;
-            } catch (Exception e) {
-            driver.findElement(
-                AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"));
-        }
+for (int i = 0; i < maxScrolls && !textFound; i++) {
+    try {
+        driver.findElement(
+            AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(" +
+                "new UiSelector().text(\"" + targetText + "\"))"
+            )
+        );
+        textFound = true;
+    } catch (Exception e) {
+        driver.findElement(
+            AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"
+            )
+        );
     }
-    driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
-    System.out.println("Clicking on: " + targetText);
-    Thread.sleep(2000); 
-    driver.findElement(
-            AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(5)"));
-    System.out.println("TC02- Scoll down ");
-//    clickAndWaitForElementWithXpath1("//*[contains(@text,'Delete Account')]");
-//    System.out.println("TC02- Click on delete account");
-//    
+}
 
+driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
+System.out.println("Clicking on: " + targetText);
+Thread.sleep(5000);
+  
+clickAndWaitForElementWithXpath1("//android.webkit.WebView//android.view.View[1]//android.widget.TextView[4]");
+System.out.println("TC02- Clicked on WebView element using native approach");
 
 }
 

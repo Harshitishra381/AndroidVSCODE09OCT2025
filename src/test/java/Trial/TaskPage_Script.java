@@ -1,40 +1,11 @@
 package Trial;
 
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import org.testng.annotations.Test;
-import io.appium.java_client.AppiumBy;
-import io.appium.java_client.AppiumDriver;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.android.nativekey.AndroidKey;
-import io.appium.java_client.android.nativekey.KeyEvent;
-import io.appium.java_client.remote.SupportsRotation;
-import org.openqa.selenium.*;
-import org.openqa.selenium.remote.DesiredCapabilities;
-import org.openqa.selenium.support.ui.ExpectedCondition;
-import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.annotations.BeforeMethod;
+import java.net.MalformedURLException;
+
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.time.Duration;
+import io.appium.java_client.AppiumBy;
 
 public class TaskPage_Script<MobileElement, Rotatable> extends Functions {
 
@@ -50,14 +21,15 @@ public class TaskPage_Script<MobileElement, Rotatable> extends Functions {
 	        Thread.sleep(1000);
             clickAndWaitForElementWithId("com.threesixteen.app:id/tv_user_coins");
             System.out.println("TC02- Open coin logs");
-            Thread.sleep(1000);
+            Thread.sleep(10000);
             SkipAd();
             SkipAd()  ; 
+			clickAndWaitForElementWithId("com.threesixteen.app:id/tv_user_coins");
+			 System.out.println("TC02x-  coin logs opened");
+
             Thread.sleep(1000);
             driver.navigate().back();
-            SkipAd();
             System.out.println("TC03- Back from coin logs");
-            SkipAd();
             if (isVisibleWithId("com.threesixteen.app:id/tv_gems")) {
             clickAndWaitForElementWithId("com.threesixteen.app:id/tv_gems");
             System.out.println("TC04- Open Diamond logs");
@@ -91,15 +63,16 @@ public class TaskPage_Script<MobileElement, Rotatable> extends Functions {
             System.out.println("TC10- click on how to win");
 
             Thread.sleep(1000);
-            driver.findElement(By.xpath("/hierarchy/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.widget.TextView[2]")).click();
-            System.out.println("TC11- click on okay button");
+             driver.navigate().back();       
+             System.out.println("TC11- click on okay button");
             Thread.sleep(1000);
             
             driver.findElement(By.xpath("//*[contains(@text,'How To Win?')]")).click();
             System.out.println("TC12- click on how to win again");
-            Thread.sleep(1000);
+            Thread.sleep(000);
             
-            driver.findElement(By.xpath("/hierarchy/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView")).click();
+            driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.View/android.view.View/android.view.View/android.view.View[2]/android.widget.ImageView\n" + //
+								"")).click();
             System.out.println("TC13- click on cross icon");
           
             

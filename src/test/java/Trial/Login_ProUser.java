@@ -445,6 +445,8 @@ public class Login_ProUser  extends Functions{
         cap.setCapability("autoGrantPermissions", true);
         cap.setCapability("ignoreHiddenApiPolicyError", true);
         cap.setCapability("noReset", false);
+        cap.setCapability("setWebContentsDebuggingEnabled", true);
+        cap.setCapability("chromedriverExecutable", "/usr/local/bin/chromedriver");
 
         URL url = new URL("http://127.0.0.1:4723/wd/hub/");
         driver = new AppiumDriver(url, cap);

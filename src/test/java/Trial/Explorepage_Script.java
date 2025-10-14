@@ -1,10 +1,9 @@
 package Trial;
 
+import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
-
-import org.openqa.selenium.*;
 
 public class Explorepage_Script<MobileElement, Rotatable>  extends Functions{
 	
@@ -607,12 +606,42 @@ public class Explorepage_Script<MobileElement, Rotatable>  extends Functions{
 	        Thread.sleep(1000);
 	        driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
 	        System.out.println("Clicking on: " + targetText);
-	        Thread.sleep(1000);
+	        Thread.sleep(5000);
 	     
 	        
 	}
 	
 	        
+@Test(priority = 15)
+	public void Gamezone15() throws InterruptedException {
+		
+		clickAndWaitForElementWithXpath1("//android.view.View[@content-desc=\"Games\"]");
+		System.out.println("TC02- Click on Gamezone");
+		Thread.sleep(2000);
+		
+		if (isVisibleWithXPath1("//*[contains(@text, 'Style Now')]")) {
+			System.out.println("TC02- Style Now is visible in Gamezone");
+		} else {
+			System.out.println("TC02- Style Now is not visible in Gamezone");
+              throw new RuntimeException("Style Now not found in Gamezone");
+		}
+
+			if (isVisibleWithXPath1("//*[contains(@text, 'Play Now')]")) {
+			System.out.println("TC02- Free fixxre quiz is visible in Gamezone");
+		} else {
+			System.out.println("TC02- Free fixxre quiz not visible in Gamezone");
+              throw new RuntimeException("Free fixxre quiz not found in Gamezone");
+		}
+
+
+			if (isVisibleWithXPath1("//*[contains(@text, 'Get Now')]")) {
+			System.out.println("TC02- wallpapaer is visible in Gamezone");
+		} else {
+			System.out.println("TC02- wallpapaer not visible in Gamezone");
+              throw new RuntimeException("wallpaper not found in Gamezone");
+		}
+
+	}
 	        
 	        
 	        

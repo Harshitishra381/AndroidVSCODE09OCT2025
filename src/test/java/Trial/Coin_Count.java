@@ -4,7 +4,6 @@ import java.net.MalformedURLException;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
-import org.testng.annotations.AfterMethod;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
@@ -119,7 +118,7 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
              }
              driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
              System.out.println("Clicking on: " + targetText);
-             Thread.sleep(30000); 
+             Thread.sleep(20000); 
              SkipAd();
              SkipAd();
              if (isVisibleWithId("com.threesixteen.app:id/tv_user_coins")) {
@@ -244,8 +243,10 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
              System.out.println("TC02- Open coin logs");
              Thread.sleep(10000);
              SkipAd();
+            //   SkipAd();
+
              Thread.sleep(2000);             
-			MobileElement element2 = (MobileElement) driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.widget.LinearLayout/android.widget.ScrollView/android.widget.LinearLayout[1]/android.widget.FrameLayout/android.view.ViewGroup/android.widget.FrameLayout/android.widget.RelativeLayout/android.widget.RelativeLayout/android.widget.TextView[1]"));
+			MobileElement element2 = (MobileElement) driver.findElement(By.id("com.threesixteen.app:id/tv_user_coins"));
              String CoinLogCoinCount = ((WebElement) element2).getText();
              System.out.println("TC02- Coin count on coin log is " + CoinLogCoinCount);
              
