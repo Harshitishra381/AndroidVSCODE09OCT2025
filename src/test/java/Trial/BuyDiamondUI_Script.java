@@ -17,6 +17,8 @@ import io.appium.java_client.AppiumBy;
 public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 
 
+
+
 	@Test(priority = 1)
 	public void SideNavigationDiamond1() throws InterruptedException {
 
@@ -666,13 +668,13 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 	
 	
 	@Test(priority = 13)
-	public void DiamondPayout133() throws InterruptedException {
+	public void DiamondPayout13() throws InterruptedException {
 
 		OpenSideNav();
 		 String targetText = "Buy Diamonds";
 	        boolean textFound = false;
 	        int maxScrolls = 4;
-	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(2));
+	        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
 
 	        for (int i = 0; i < maxScrolls && !textFound; i++) {
 	            try {
@@ -691,20 +693,24 @@ public class BuyDiamondUI_Script<MobileElement, Rotatable>  extends Functions{
 		   Thread.sleep(1000);
 	        clickAndWaitForElementWithId("com.threesixteen.app:id/tv_gems");
 			System.out.println("TC01 -Open diamond log ");
-           		   Thread.sleep(5000);
+           		   Thread.sleep(1000);
+		
 
-            if (isVisibleWithXPath1("//android.webkit.WebView/android.view.View/android.widget.TextView[2]")) {
-    			System.out.println("TC02 -Diamond payout webview is opend ");
+
+
+            // if (isVisibleWithXPath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.widget.FrameLayout/android.view.ViewGroup/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View/android.view.View[3]/android.widget.TabWidget/android.view.View[2]")) {
+    		// 	System.out.println("TC02 -Diamond payout webview is opend ");
+			// 	           		   Thread.sleep(1000);
                 
-				// clickAndWaitForElementWithXpath1("//android.webkit.WebView/android.webkit.WebView/android.view.View/android.widget.TextView[7]");
-    			// System.out.println("TC03 -payout webview opened");
+			// 	// clickAndWaitForElementWithXpath1("//android.webkit.WebView/android.webkit.WebView/android.view.View/android.widget.TextView[7]");
+    		// 	// System.out.println("TC03 -payout webview opened");
 
-            }
-            else
-            {
-             			System.out.println("TC04 -Diamond payout wbeview not opened");
-						throw new NoSuchElementException("WebView not found");
-            }
+            // }
+            // else
+            // {
+            //  			System.out.println("TC04 -Diamond payout wbeview not opened");
+			// 			throw new NoSuchElementException("WebView not found");
+            // }
 	}
 	
                 

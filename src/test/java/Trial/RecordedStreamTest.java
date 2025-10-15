@@ -10,7 +10,7 @@ import com.google.common.collect.ImmutableMap;
 
 import io.appium.java_client.AppiumBy;
 
-public class Pro<MobileElement> extends Functions  {
+public class RecordedStreamTest<MobileElement> extends Functions  {
 
 
 	

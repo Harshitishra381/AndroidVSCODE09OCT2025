@@ -44,7 +44,7 @@ public class DetailedHtmlReportListener implements ITestListener {
             writer.println("<head>");
             writer.println("<meta charset='UTF-8'>");
             writer.println("<meta name='viewport' content='width=device-width, initial-scale=1.0'>");
-            writer.println("<title>Appium Automation Test Report</title>");
+            writer.println("<title>Appium Automation Automated Test Report</title>");
             writer.println("<style>");
             writer.println("body { font-family: Arial, sans-serif; margin: 20px; }");
             writer.println("h1, h2 { text-align: center; }");
@@ -60,13 +60,21 @@ public class DetailedHtmlReportListener implements ITestListener {
             writer.println("</style>");
             writer.println("</head>");
             writer.println("<body>");
-            writer.println("<h1>APPIUM AUTOMATION TEST EXECUTION REPORT</h1>");
+            writer.println("<h1>APPIUM AUTOMATION AUTOMATED TEST EXECUTION REPORT</h1>");
             writer.println("<h2>Suite: " + context.getSuite().getName() + "</h2>");
-            writer.println("<p>Report Generated On: " + sdf.format(new Date()) + "<br>");
-            writer.println("OS: " + System.getProperty("os.name") + "<br>");
-            writer.println("User: " + System.getProperty("user.name") + "<br>");
-            writer.println("Java Version: " + System.getProperty("java.version") + "</p>");
-            writer.println("<p>Tester Name: Harshit Mishra</p>");
+           
+            String appVersion = getAppVersionFromCapabilities();
+            
+            writer.println("<div style='background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;'>");
+            writer.println("<h3 style='margin-top: 0; color: #007bff;'>Test Environment Details</h3>");
+            writer.println("<p><strong>📱 App Version:</strong> <span style='color: #28a745; font-weight: bold;'>" + appVersion + "</span><br>");
+            writer.println("<strong>📅 Report Generated:</strong> " + sdf.format(new Date()) + "<br>");
+            writer.println("<strong>💻 OS:</strong> " + System.getProperty("os.name") + "<br>");
+            writer.println("<strong>👤 User:</strong> " + System.getProperty("user.name") + "<br>");
+            // writer.println("<strong>☕ Java Version:</strong> " + System.getProperty("java.version") + "<br>");
+            writer.println("<strong>🧪 Android Version:</strong> 14 </p>");
+            writer.println("<strong>🧪 Tester:</strong> Harshit Mishra</p>");
+            writer.println("</div>");
 
             // Table header
             writer.println("<table>");
@@ -101,6 +109,7 @@ public class DetailedHtmlReportListener implements ITestListener {
         
         // If this test was previously failed/skipped and now passes, count as retry success
         if (retriedTests.containsKey(testKey)) {
+            retriedTests.put(testKey, true); // Mark as eventually passed
             System.out.println("\u001B[32m\u2713 PASS: " + result.getMethod().getMethodName() + " passed on retry\u001B[0m");
             logResult(result, "PASS (Retry)", "pass");
         } else {
@@ -193,17 +202,29 @@ public class DetailedHtmlReportListener implements ITestListener {
         int finalPassed = context.getPassedTests().size();
         int finalFailed = context.getFailedTests().size();
         int finalSkipped = context.getSkippedTests().size();
-        int finalTotal = finalPassed + finalFailed + finalSkipped;
+        
+        // Count retried tests that eventually passed
+        int retriedPassed = 0;
+        for (Boolean eventuallyPassed : retriedTests.values()) {
+            if (eventuallyPassed) {
+                retriedPassed++;
+            }
+        }
+        
+        // Adjust counts to include retried passes
+        int totalPassedIncludingRetries = finalPassed + retriedPassed;
+        int totalFailedExcludingRetries = finalFailed - retriedPassed;
+        int finalTotal = totalPassedIncludingRetries + totalFailedExcludingRetries + finalSkipped;
         
         // Summary
         writer.println("<div class='summary'>");
         writer.println("<h2>Execution Summary</h2>");
         writer.println("<p>Total Tests: " + finalTotal + "<br>");
-        writer.println("Passed: " + finalPassed + " (including retries)<br>");
-        writer.println("Failed: " + finalFailed + "<br>");
+        writer.println("Passed: " + totalPassedIncludingRetries + " (including " + retriedPassed + " retries)<br>");
+        writer.println("Failed: " + totalFailedExcludingRetries + "<br>");
         writer.println("Skipped: " + finalSkipped + "<br>");
-        writer.println(String.format("Pass %%: %.2f%%<br>", finalTotal > 0 ? (100.0 * finalPassed / finalTotal) : 0));
-        writer.println(String.format("Fail %%: %.2f%%<br>", finalTotal > 0 ? (100.0 * finalFailed / finalTotal) : 0));
+        writer.println(String.format("Pass %%: %.2f%%<br>", finalTotal > 0 ? (100.0 * totalPassedIncludingRetries / finalTotal) : 0));
+        writer.println(String.format("Fail %%: %.2f%%<br>", finalTotal > 0 ? (100.0 * totalFailedExcludingRetries / finalTotal) : 0));
         writer.println(String.format("Skip %%: %.2f%%<br>", finalTotal > 0 ? (100.0 * finalSkipped / finalTotal) : 0));
         writer.println("Execution Completed On: " + sdf.format(new Date()));
         writer.println("</p>");
@@ -235,16 +256,47 @@ public class DetailedHtmlReportListener implements ITestListener {
         writer.println("</div>");
 
         writer.println("</body></html>");
-        writer.close();
         
+        // Ensure proper cleanup
+        try {
+            writer.flush();
+            writer.close();
+            writer = null;
+        } catch (Exception e) {
+            System.out.println("Error closing report file: " + e.getMessage());
+        }
         
         try {
-            Thread.sleep(30000); 
+            Thread.sleep(5000); 
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
         
         // Send via Gmail (free)
         GmailSender.sendReport(reportFilePath);
+    }
+    
+    private String getAppVersionFromCapabilities() {
+        try {
+            // Try to get APK path from system property or environment
+            String apkPath = System.getProperty("apk.path");
+            if (apkPath == null) {
+                apkPath = System.getenv("APK_PATH");
+            }
+            
+            // Default APK path if not specified
+            if (apkPath == null) {
+                apkPath = "/Users/rooter/Desktop/app-release.apk";
+            }
+            
+            System.out.println("📱 Extracting app version from: " + apkPath);
+            String version = ApkVersionExtractor.getAppVersion(apkPath);
+            System.out.println("📱 App version extracted: " + version);
+            return version;
+            
+        } catch (Exception e) {
+            System.out.println("❌ Could not extract app version: " + e.getMessage());
+            return "8.4.10 (Error)";
+        }
     }
 }

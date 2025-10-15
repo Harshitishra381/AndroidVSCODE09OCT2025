@@ -112,7 +112,6 @@ public class LiveStream_script extends Functions {
         		System.out.println("\u001B[33m\u26a0 WARNING: TC17- 2x not coming in Active tasks bottom sheet\u001B[0m");
               Thread.sleep(1000);
         }
-        System.out.println("\u001B[32m\u2713 PASS: livestreamwatccanwin2 test completed successfully\u001B[0m");
     }
     
 
@@ -120,29 +119,27 @@ public class LiveStream_script extends Functions {
     public void liveplayercomennt3() throws InterruptedException {
         OpenLivetStream();
 
-            Thread.sleep(1000);
-            Thread.sleep(7000);
+            Thread.sleep(4000);
             clickAndWaitForElementWithId("com.threesixteen.app:id/et_comment_collapsed");
-            System.out.println("\u001B[32m\u2713 PASS: TC06- clicked comment section\u001B[0m");
+            System.out.println("TC06- clicked comment section");
             if (isVisibleWithId("com.threesixteen.app:id/et_comment"))
             {
              
             (driver).findElement(By.id("com.threesixteen.app:id/et_comment")).sendKeys("Hi");
-            System.out.println("\u001B[32m\u2713 PASS: TC07- Typed Hi comment section\u001B[0m");
+            System.out.println("TC07- Typed Hi comment section");
             Thread.sleep(1000);
             clickAndWaitForElementWithId("com.threesixteen.app:id/iv_post");
-            System.out.println("\u001B[32m\u2713 PASS: TC08- Send the comment on live stream\u001B[0m");
+            System.out.println(" TC08- Send the comment on live stream");
             Thread.sleep(1000);
             clickAndWaitForElementWithId("com.threesixteen.app:id/iv_close");
-            System.out.println("\u001B[32m\u2713 PASS: TC09- Exist from Live chat\u001B[0m");
+            System.out.println("TC09- Exist from Live chat");
             Thread.sleep(1000);
             }
             else
             {
                 clickAndWaitForElementWithId("com.threesixteen.app:id/iv_close");
-                System.out.println("\u001B[33m\u26a0 WARNING: TC10- Only Followers chat allowed\u001B[0m");
+                System.out.println("TC10- Only Followers chat allowed");
             }
-        System.out.println("\u001B[32m\u2713 PASS: liveplayercomennt3 test completed successfully\u001B[0m");
     }
 
     

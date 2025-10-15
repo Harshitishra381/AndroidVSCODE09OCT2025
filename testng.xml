@@ -1,31 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
 <suite name="Rooter Suite">
+  <listeners>
+    <listener class-name="Trial.GlobalKeepAwakeListener"/>
+  </listeners>
+  
   <test name="BuyDiamondUITests">
     <listeners>
       <listener class-name="Trial.DetailedHtmlReportListener"/>
       <listener class-name="Trial.MyAnnotationTransformer"/>
       <listener class-name="Trial.TestResultCleanerListener"/>
       <listener class-name="Trial.RetryListener"/>
+      <listener class-name="Trial.ScreenKeepAliveListener"/>
     </listeners>
 
     <classes>
-           <class name="Trial.Coin_Count"/>
-            <class name="Trial.LikesCount_Script"/>
-            <class name="Trial.CommentCount_Script"/>
-           <class name="Trial.LiveStream_script"/>
-            <class name="Trial.Reel_Script"/>
-            <class name="Trial.Video_Script"/>
-           <class name="Trial.SideNav_Script"/>
-           <class name="Trial.Search_Script"/>   
-            <class name="Trial.TaskPage_Script"/>
-             <class name="Trial.GiftStickerandMagicChat_Script"/>  
-            <class name="Trial.BuyDiamondUI_Script"/>
-            <class name="Trial.InAppNotification_Script"/>  
-            <class name="Trial.ContestPage_Script"/>    
-            <class name="Trial.SelfProfile_Script"/>
-            <class name="Trial.Explorepage_Script"/>
-            <class name="Trial.Pro"/>  
+                      <class name="Trial.RecordedStreamTest"/>  
+     
 
     </classes>
   </test>

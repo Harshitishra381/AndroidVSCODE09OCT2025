@@ -1,9 +1,18 @@
 package Trial;
 
-import javax.mail.*;
-import javax.mail.internet.*;
-import java.util.Properties;
 import java.io.File;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.Multipart;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeBodyPart;
+import javax.mail.internet.MimeMessage;
+import javax.mail.internet.MimeMultipart;
 
 public class GmailSender {
     
@@ -12,9 +21,9 @@ public class GmailSender {
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "true");
+        props.put("mail.smtp.starttls.enable", "false");
         
-        String username = "Harshit.mishra@rooter.io,praveen.rajput@rooter.io";
+        String username = "Harshit.mishra@rooter.io";
         String password = "yhji vkyz wqhu tnzt";
         
         Session session = Session.getInstance(props, new Authenticator() {
@@ -26,16 +35,16 @@ public class GmailSender {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
-            String recipients = "harshit.mishra@rooter.io";
+            String recipients = "harshit.mishra@rooter.io,praveen.rajput@rooter.io,adhikaar.marwaha@rooter.io,balram.keshari@rooter.io,apoorv@rooter.io,anas.mirza@rooter.io,dipesh@rooter.ios";
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients));
-            message.setSubject("Android Automation Test Report - " + new File(reportPath).getName());
+            message.setSubject("Android Automation Automated Test Report - " + new File(reportPath).getName());
             
            
             String reportName = new File(reportPath).getName();
             String htmlBody = "<html><body>" +
-                "<h2>Rooter Android Automation Test Report</h2>" +
+                "<h2> Android Automation Automated Test Report</h2>" +
                 "<p>Hello Team,</p>" +
-                "<p>The Android automation test suite has completed successfully. Please find the attached test execution report for your review.</p>" +
+                "<p>This is an automated email. The Android automation test suite has completed successfully. Please find the attached test execution report for your review.</p>" +
                 "<h3>Report Details:</h3>" +
                 "<ul>" +
                 "<li><strong>Report Name:</strong> " + reportName + "</li>" +

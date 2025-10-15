@@ -2,16 +2,12 @@ package Trial;
 
 import java.net.MalformedURLException;
 import java.util.NoSuchElementException;
-import java.util.Set;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
 
 import io.appium.java_client.AppiumBy;
-import io.appium.java_client.android.AndroidDriver;
-import io.appium.java_client.remote.SupportsContextSwitching;
 
 public class SideNav_Script<MobileElement, Rotatable> extends Functions {
 
@@ -502,18 +498,16 @@ if (isvisibleithXpath1("//android.widget.LinearLayout[@content-desc=\"Gaming\"]"
         driver.findElement(By.xpath("//*[contains(@text,'Watch History')]")).click();
         System.out.println("TC01- open Watch history");
         Thread.sleep(1000);
-        Thread.sleep(1000);
         clickAndWaitForElementWithXpath1(
                 "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.ImageView");
         System.out.println("TC02- open watch history feed");
-        Thread.sleep(1500);
         SkipAd();
         driver.navigate().back();
-        Thread.sleep(5000);
+        Thread.sleep(1000);
         driver.navigate().back();
 
         System.out.println("TC03- Back from feed");
-        Thread.sleep(5000);
+        Thread.sleep(1000);
         if (isVisibleWithId("com.threesixteen.app:id/iv_profile_image")) {
         clickAndWaitForElementWithId("com.threesixteen.app:id/iv_profile_image");
         System.out.println("TC034- open profile page");
@@ -542,7 +536,7 @@ if (isvisibleithXpath1("//android.widget.LinearLayout[@content-desc=\"Gaming\"]"
         clickAndWaitForElementWithXpath1(
                 "/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.view.ViewGroup/android.widget.LinearLayout/android.view.ViewGroup/androidx.recyclerview.widget.RecyclerView/android.view.ViewGroup[1]/android.widget.RelativeLayout/android.widget.FrameLayout/android.widget.ImageView");
         System.out.println("TC08- open watch history feed");
-        Thread.sleep(1500);
+        Thread.sleep(1000);
 
     }
     
@@ -1103,16 +1097,23 @@ if (isvisibleithXpath1("//android.widget.LinearLayout[@content-desc=\"Gaming\"]"
         }
         driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
         System.out.println("Clicking on: " + targetText);
-                Thread.sleep(1000);
-        SkipSurvey();
+                Thread.sleep(10000);
+         SkipSurvey();
          SkipAd();
          if (isVisibleWithId("com.threesixteen.app:id/iv_announcement"))
          {
-        	 System.out.println("TC03- Top carousal is visible");
+        	 System.out.println("TC03- Top carousal is visible on old reward page ");
          }
          else
          {
+            if (isVisibleWithXPath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/androidx.compose.ui.platform.ComposeView/android.view.View/android.view.View/android.view.View[1]"))
+           {
+        	 System.out.println("TC03- Top carousal is visible on new reward page ");
+                }
+            
+            else {
         	 throw new NoSuchElementException("Top carousal is not visible");
+            }
          }
       
     }
@@ -2190,7 +2191,46 @@ System.out.println("TC02- Clicked on WebView element using native approach");
     
     
    
-    
+       
+    @Test(priority = 41)
+    public void GamingLeaderbaord41() throws InterruptedException {
+
+        OpenSideNav();
+Thread.sleep(1000);
+
+String targetText = "Gaming Leaderboard";
+boolean textFound = false;
+int maxScrolls = 5;
+
+for (int i = 0; i < maxScrolls && !textFound; i++) {
+    try {
+        driver.findElement(
+            AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollIntoView(" +
+                "new UiSelector().text(\"" + targetText + "\"))"
+            )
+        );
+        textFound = true;
+    } catch (Exception e) {
+        driver.findElement(
+            AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollForward()"
+            )
+        );
+    }
+}
+
+driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
+System.out.println("Clicking on: " + targetText);
+Thread.sleep(1000);
+  
+clickAndWaitForElementWithXpath1("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/android.widget.LinearLayout/android.widget.FrameLayout/androidx.drawerlayout.widget.DrawerLayout/android.view.ViewGroup/android.widget.FrameLayout[1]/android.view.ViewGroup/android.view.ViewGroup/android.webkit.WebView/android.webkit.WebView/android.view.View[1]/android.view.View[1]/android.widget.TabWidget/android.view.View[1]");
+System.out.println("TC02- Gaming leaderboard opened");
+Thread.sleep(1000);
+
+}
+
+
     
     
     

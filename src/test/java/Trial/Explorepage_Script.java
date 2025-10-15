@@ -459,13 +459,12 @@ public class Explorepage_Script<MobileElement, Rotatable>  extends Functions{
 	@Test(priority = 11)
 	public void ExplorePageBGMIingameupdates11() throws InterruptedException {
 
-           Thread.sleep(1000);
 		    OpenExplorePage();
 	        Thread.sleep(1000);
 	        System.out.println("TC02- Open Explore page ");
 	        String targetText = "BGMI in-game updates";
 	        boolean textFound = false;
-	        int maxScrolls = 10; 
+	        int maxScrolls = 5; 
 
 	        for (int i = 0; i < maxScrolls && !textFound; i++) {
 	            try {

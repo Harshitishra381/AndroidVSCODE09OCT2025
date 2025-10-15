@@ -118,7 +118,7 @@ public class Coin_Count<MobileElement, Rotatable> extends Functions {
              }
              driver.findElement(By.xpath("//*[contains(@text,'" + targetText + "')]")).click();
              System.out.println("Clicking on: " + targetText);
-             Thread.sleep(20000); 
+             Thread.sleep(10000); 
              SkipAd();
              SkipAd();
              if (isVisibleWithId("com.threesixteen.app:id/tv_user_coins")) {

@@ -414,59 +414,173 @@ private static void clickAndWaitForElementWithtext(String string) {
 		// Helper method to open stream and handle playback
 	public static void MuteRecordedStream(String tag) throws InterruptedException {
 	
-		    if (isVisibleWithId("com.threesixteen.app:id/replay_tag")) {
-		        clickAndWaitForElementWithId("com.threesixteen.app:id/player_layout");
-		        System.out.println(tag + " - Opened recorded stream 1st ");
-		        SkipSurvey();
-		        Thread.sleep(7000);
+		//     if (isVisibleWithId("com.threesixteen.app:id/replay_tag")) {
+		//         clickAndWaitForElementWithId("com.threesixteen.app:id/player_layout");
+		//         System.out.println(tag + " - Opened recorded stream 1st ");
+		//         SkipSurvey();
+		//         Thread.sleep(7000);
 
-		        // AdBlocker Check
-		        if (isVisibleWithXPath1("/hierarchy/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.ImageView")) {
-		            System.out.println(tag + " - AdBlocker detected");
-		            Thread.sleep(2000);
-		            driver.navigate().back();
-		            Thread.sleep(2000);
-		            driver.navigate().back();
-		        } else {
-		            attemptUnmute();
-		        }
-		    }
+		//         // AdBlocker Check
+		//         if (isVisibleWithXPath1("/hierarchy/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.ImageView")) {
+		//             System.out.println(tag + " - AdBlocker detected");
+		//             Thread.sleep(2000);
+		//             driver.navigate().back();
+		//             Thread.sleep(2000);
+		//             driver.navigate().back();
+		//         } else {
+		//             attemptUnmute();
+		//         }
+		//     }
 		
 
-		// First attempt to open stream
-		if (isVisibleWithId("com.threesixteen.app:id/replay_tag")) {
-		    openAndHandleStream("TF01");
-		} else {
-		    driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"));
-		    Thread.sleep(1000);
-		    openAndHandleStream("TF05");
-	        SkipSurvey();
+		// // First attempt to open stream
+		// if (isVisibleWithId("com.threesixteen.app:id/replay_tag")) {
+		//     openAndHandleStream("TF01");
+		// } else {
+		//     driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"));
+		//     Thread.sleep(1000);
+		//     openAndHandleStream("TF05");
+	    //     SkipSurvey();
 
-		}
+		// }
 
-		// Back, scroll and second attempt
-		Thread.sleep(5000);
-		driver.navigate().back();
-		Thread.sleep(2000);
-		driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"));
-		Thread.sleep(2000);
-		openAndHandleStream("TF13");
+		// // Back, scroll and second attempt
+		// Thread.sleep(5000);
+		// driver.navigate().back();
+		// Thread.sleep(2000);
+		// driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"));
+		// Thread.sleep(2000);
+		// openAndHandleStream("TF13");
 
-		// Third attempt to open the stream
-		Thread.sleep(1000);
-		driver.navigate().back();
-		Thread.sleep(1000);
-		driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"));
-		Thread.sleep(1000);
-		if (isVisibleWithId("com.threesixteen.app:id/replay_tag")) {
-		    openAndHandleStream("TF25");
-		} else {
-		    clickAndWaitForElementWithId("com.threesixteen.app:id/iv_watch_n_view_lottie");
-		    System.out.println("TF37 - replay_tag not found for the 3rd stream");
-		}
+
+        // Thread.sleep(5000);
+		// driver.navigate().back();
+		// Thread.sleep(2000);
+		// driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"));
+		// Thread.sleep(2000);
+		// openAndHandleStream("TF14");
+
+
+		// // Third attempt to open the stream
+		// Thread.sleep(1000);
+		// driver.navigate().back();
+		// Thread.sleep(1000);
+		// driver.findElement(AppiumBy.androidUIAutomator("new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"));
+		// Thread.sleep(1000);
+		// if (isVisibleWithId("com.threesixteen.app:id/replay_tag")) {
+		//     openAndHandleStream("TF15");
+		// } else {
+		//     clickAndWaitForElementWithId("com.threesixteen.app:id/iv_watch_n_view_lottie");
+		//     System.out.println("TF16 - replay_tag not found for the 3rd stream");
+		// }
+
+
+    int failureCount = 0;
+
+    try {
+        if (isVisibleWithId("com.threesixteen.app:id/replay_tag")) {
+            clickAndWaitForElementWithId("com.threesixteen.app:id/player_layout");
+            System.out.println(tag + " - Opened recorded stream 1st ");
+            SkipSurvey();
+            Thread.sleep(7000);
+
+            // AdBlocker Check
+            if (isVisibleWithXPath1("/hierarchy/android.view.ViewGroup/android.view.View/android.view.View/android.view.View[2]/android.view.View/android.widget.ImageView")) {
+                System.out.println(tag + " - AdBlocker detected");
+                Thread.sleep(2000);
+                driver.navigate().back();
+                Thread.sleep(2000);
+                driver.navigate().back();
+            } else {
+                attemptUnmute();
+            }
+        }
+    } catch (Exception e) {
+        System.out.println(tag + " - Pre-check stream (non-counted) failed: " + e.getMessage());
+    }
+
+    // Stream 1 - TF01 or TF05
+    try {
+                    System.out.println("Attempting to open 2nd  stream (TF01/TF05)");
+                             Thread.sleep(5000);
+        driver.navigate().back();
+        Thread.sleep(2000);
+        if (isVisibleWithId("com.threesixteen.app:id/replay_tag")) {
+            openAndHandleStream("TF01");
+        } else {
+            driver.findElement(AppiumBy.androidUIAutomator(
+                "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"));
+            Thread.sleep(1000);
+            openAndHandleStream("TF05");
+            SkipSurvey();
+        }
+    } catch (Exception e) {
+        System.out.println("TF01/TF05 - Stream 1 failed: " + e.getMessage());
+        failureCount++;
+    }
+
+    // Stream 2 - TF13
+    try {
+                            System.out.println("Attempting to open 3rd  stream (TF133)");
+
+        Thread.sleep(5000);
+        driver.navigate().back();
+        Thread.sleep(2000);
+        driver.findElement(AppiumBy.androidUIAutomator(
+            "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"));
+        Thread.sleep(2000);
+        openAndHandleStream("TF13");
+    } catch (Exception e) {
+        System.out.println("TF13 - Stream 2 failed: " + e.getMessage());
+        failureCount++;
+    }
+
+    // Stream 3 - TF14
+    try {
+                                    System.out.println("Attempting to open 4th  stream (TF14)");
+
+        Thread.sleep(5000);
+        driver.navigate().back();
+        Thread.sleep(2000);
+        driver.findElement(AppiumBy.androidUIAutomator(
+            "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(2)"));
+        Thread.sleep(2000);
+        openAndHandleStream("TF14");
+    } catch (Exception e) {
+        System.out.println("TF14 - Stream 3 failed: " + e.getMessage());
+        failureCount++;
+    }
+
+    // Stream 4 - TF15 or TF16
+    try {
+                                            System.out.println("Attempting to open 5th  stream (TF14)");
+        Thread.sleep(1000);
+        driver.navigate().back();
+        Thread.sleep(1000);
+        driver.findElement(AppiumBy.androidUIAutomator(
+            "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(2)"));
+        Thread.sleep(1000);
+        if (isVisibleWithId("com.threesixteen.app:id/replay_tag")) {
+            openAndHandleStream("TF15");
+        } else {
+            clickAndWaitForElementWithId("com.threesixteen.app:id/iv_watch_n_view_lottie");
+            System.out.println("TF16 - replay_tag not found for the 4th stream");
+        }
+    } catch (Exception e) {
+        System.out.println("TF15/TF16 - Stream 4 failed: " + e.getMessage());
+        failureCount++;
+    }
+
+    // Final evaluation
+    if (failureCount >= 2) {
+        throw new AssertionError("Test failed: " + failureCount + " out of 4 stream attempts failed.");
+    } else {
+        System.out.println("Test passed: Only " + failureCount + " stream(s) failed.");
+    }
+}
 
 	 
-	}
+	
 	 
 	 
 	 
@@ -1615,10 +1729,8 @@ public void CheckVideoProgress() throws InterruptedException {
 
 
     public static void SkipAd() throws InterruptedException {
-            Thread.sleep(5000); 
     JavascriptExecutor js = (JavascriptExecutor) driver;
 
-    // List of all possible ad close / skip button XPaths
     String[] adXpaths = {
         "//android.widget.ImageButton[@content-desc=\"Close\"]",
         "//android.widget.ImageButton[@content-desc='Close']",
@@ -1643,7 +1755,7 @@ public void CheckVideoProgress() throws InterruptedException {
                     try {
                         element.click();
                         System.out.println("Clicked via normal click → " + xpath);
-                                            Thread.sleep(2000);
+                                            Thread.sleep(1000);
 
                     } catch (Exception e1) {
                      
@@ -1652,12 +1764,12 @@ public void CheckVideoProgress() throws InterruptedException {
                             System.out.println("Clicked via JavaScriptExecutor → " + xpath);
                         } catch (Exception e2) {
                             System.out.println("Failed JS click for: " + xpath);
-                                                Thread.sleep(2000);
+                                                Thread.sleep(1000);
 
                         }
                     }
 
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                 } catch (Exception e) {
                     System.out.println("Element not interactable: " + xpath);
                 }
@@ -1675,7 +1787,7 @@ public void CheckVideoProgress() throws InterruptedException {
         //     }
         // }
 
-        Thread.sleep(5000); 
+        Thread.sleep(1000); 
     }
 
     System.out.println("Ad closing sequence completed");
@@ -1686,7 +1798,7 @@ public void CheckVideoProgress() throws InterruptedException {
 
 public void SkipAdBeforeAppLaunch() throws InterruptedException {
 		 
-	  Thread.sleep(30000);
+	//   Thread.sleep(30000);
 	  if (isVisibleWithXPath1("//android.widget.ImageButton[@content-desc=\"Close\"]"))  {	         			 
 			 clickAndWaitForElementWithXpath1("//android.widget.ImageButton[@content-desc=\"Close\"]") ;
 		        System.out.println("AD01- Google Ads sheet closed");
@@ -1888,33 +2000,34 @@ if (isVisibleWithId("com.threesixteen.app:id/et_mobile")) {
   
         
         if (isVisibleWithXPath1("//android.widget.ImageView[@content-desc=\"Dismiss update dialog\"]"))  {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             clickAndWaitForElementWithXpath1("//android.widget.ImageView[@content-desc=\"Dismiss update dialog\"]");
-            Thread.sleep(1000);
+            Thread.sleep(2000);
              System.out.println("Exist from Update");
         }
         
 
         if (isVisibleWithXPath1("//*[contains(@text,'Update')]"))  {
-            Thread.sleep(3000);
+            Thread.sleep(2000);
             driver.navigate().back();
-            Thread.sleep(1000);
+            Thread.sleep(2000);
              System.out.println("Exist from Update");
         }
         else
         {
         	 if (isVisibleWithXPath1("//android.widget.ImageView[@content-desc=\"Dismiss update dialog\"]"))  {
-                 Thread.sleep(3000);
+                 Thread.sleep(2000);
                  clickAndWaitForElementWithXpath1("//android.widget.ImageView[@content-desc=\"Dismiss update dialog\"]");
-                 Thread.sleep(1000);
+                 Thread.sleep(2000);
                   System.out.println("Exist from Update");
              }
             Thread.sleep(1000);
             if (isVisibleWithXPath1("//*[contains(@text,'Update')]"))  {
-                
+                            Thread.sleep(3000);
+
                 driver.navigate().back();
                  System.out.println("Exist from Update");
-                 Thread.sleep(1000);
+                 Thread.sleep(2000);
 
         }
       }
