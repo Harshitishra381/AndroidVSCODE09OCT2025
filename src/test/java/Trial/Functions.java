@@ -375,7 +375,10 @@ private static void clickAndWaitForElementWithtext(String string) {
 	            SkipCollectCoinBottomSheet();
 	            break;
 	        }
-	        Thread.sleep(700);
+            else
+            {
+                throw new InterruptedException("Volume icon not found, cannot unmute.");
+            }
 	    }
 	}
  
@@ -527,7 +530,7 @@ private static void clickAndWaitForElementWithtext(String string) {
         driver.navigate().back();
         Thread.sleep(2000);
         driver.findElement(AppiumBy.androidUIAutomator(
-            "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(1)"));
+            "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(2)"));
         Thread.sleep(2000);
         openAndHandleStream("TF13");
     } catch (Exception e) {
@@ -543,7 +546,7 @@ private static void clickAndWaitForElementWithtext(String string) {
         driver.navigate().back();
         Thread.sleep(2000);
         driver.findElement(AppiumBy.androidUIAutomator(
-            "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(2)"));
+            "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(3)"));
         Thread.sleep(2000);
         openAndHandleStream("TF14");
     } catch (Exception e) {
@@ -558,7 +561,7 @@ private static void clickAndWaitForElementWithtext(String string) {
         driver.navigate().back();
         Thread.sleep(1000);
         driver.findElement(AppiumBy.androidUIAutomator(
-            "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(2)"));
+            "new UiScrollable(new UiSelector().scrollable(true)).scrollToEnd(4)"));
         Thread.sleep(1000);
         if (isVisibleWithId("com.threesixteen.app:id/replay_tag")) {
             openAndHandleStream("TF15");

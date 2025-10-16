@@ -21,7 +21,7 @@ public class GmailSender {
         props.put("mail.smtp.host", "smtp.gmail.com");
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.auth", "true");
-        props.put("mail.smtp.starttls.enable", "false");
+        props.put("mail.smtp.starttls.enable", "true");
         
         String username = "Harshit.mishra@rooter.io";
         String password = "yhji vkyz wqhu tnzt";
@@ -35,7 +35,7 @@ public class GmailSender {
         try {
             Message message = new MimeMessage(session);
             message.setFrom(new InternetAddress(username));
-            String recipients = "harshit.mishra@rooter.io,praveen.rajput@rooter.io,adhikaar.marwaha@rooter.io,balram.keshari@rooter.io,apoorv@rooter.io,anas.mirza@rooter.io,dipesh@rooter.ios";
+            String recipients = "harshit.mishra@rooter.io,praveen.rajput@rooter.io,adhikaar.marwaha@rooter.io,balram.keshari@rooter.io,apoorv@rooter.io,anas.mirza@rooter.io,dipesh@rooter.io";
             message.setRecipients(Message.RecipientType.TO, InternetAddress.parse(recipients));
             message.setSubject("Android Automation Automated Test Report - " + new File(reportPath).getName());
             
