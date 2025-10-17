@@ -17,11 +17,9 @@ public class DetailedHtmlReportListener implements ITestListener {
     private final List<ITestResult> failedTestResults = new ArrayList<>();
     private final SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss z");
 
-    private int totalTests = 0;
-    private int passedTests = 0;
-    private int failedTests = 0;
-    private int skippedTests = 0;
-    private final Map<String, Boolean> retriedTests = new HashMap<>();
+    private final Set<String> uniqueTests = new HashSet<>();
+    private final Map<String, String> testStatus = new HashMap<>(); // testKey -> PASS/FAIL/SKIP
+    private final Map<String, Integer> retryCount = new HashMap<>();
 
     public DetailedHtmlReportListener() {
         sdf.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata")); // IST
@@ -106,28 +104,27 @@ public class DetailedHtmlReportListener implements ITestListener {
     @Override
     public void onTestSuccess(ITestResult result) {
         String testKey = result.getTestClass().getName() + "." + result.getMethod().getMethodName();
+        uniqueTests.add(testKey);
         
-        // If this test was previously failed/skipped and now passes, count as retry success
-        if (retriedTests.containsKey(testKey)) {
-            retriedTests.put(testKey, true); // Mark as eventually passed
+        if (testStatus.containsKey(testKey)) {
+            retryCount.put(testKey, retryCount.getOrDefault(testKey, 0) + 1);
             System.out.println("\u001B[32m\u2713 PASS: " + result.getMethod().getMethodName() + " passed on retry\u001B[0m");
             logResult(result, "PASS (Retry)", "pass");
         } else {
-            passedTests++;
-            totalTests++;
             System.out.println("\u001B[32m\u2713 PASS: " + result.getMethod().getMethodName() + " completed successfully\u001B[0m");
             logResult(result, "PASS", "pass");
         }
+        testStatus.put(testKey, "PASS");
     }
 
     @Override
     public void onTestFailure(ITestResult result) {
         String testKey = result.getTestClass().getName() + "." + result.getMethod().getMethodName();
+        uniqueTests.add(testKey);
         
-        if (!retriedTests.containsKey(testKey)) {
-            failedTests++;
-            totalTests++;
-            retriedTests.put(testKey, false);
+        // Only set as FAIL if not already PASS (in case of retry after failure)
+        if (!"PASS".equals(testStatus.get(testKey))) {
+            testStatus.put(testKey, "FAIL");
         }
         failedTestResults.add(result);
         System.out.println("\u001B[31m\u2717 FAIL: " + result.getMethod().getMethodName() + " failed\u001B[0m");
@@ -137,11 +134,11 @@ public class DetailedHtmlReportListener implements ITestListener {
     @Override
     public void onTestSkipped(ITestResult result) {
         String testKey = result.getTestClass().getName() + "." + result.getMethod().getMethodName();
+        uniqueTests.add(testKey);
         
-        if (!retriedTests.containsKey(testKey)) {
-            skippedTests++;
-            totalTests++;
-            retriedTests.put(testKey, false);
+        // Only set as SKIP if not already PASS (in case of retry after skip)
+        if (!"PASS".equals(testStatus.get(testKey))) {
+            testStatus.put(testKey, "SKIP");
         }
         System.out.println("\u001B[33m\u26a0 SKIP: " + result.getMethod().getMethodName() + " skipped\u001B[0m");
         logResult(result, "SKIPPED", "skip");
@@ -198,34 +195,30 @@ public class DetailedHtmlReportListener implements ITestListener {
         // Close table
         writer.println("</table>");
 
-        // Calculate final counts considering retries
-        int finalPassed = context.getPassedTests().size();
-        int finalFailed = context.getFailedTests().size();
-        int finalSkipped = context.getSkippedTests().size();
+        // Calculate final counts based on unique tests
+        int totalUniqueTests = uniqueTests.size();
+        int passedTests = 0;
+        int failedTests = 0;
+        int totalRetries = 0;
         
-        // Count retried tests that eventually passed
-        int retriedPassed = 0;
-        for (Boolean eventuallyPassed : retriedTests.values()) {
-            if (eventuallyPassed) {
-                retriedPassed++;
+        for (String testKey : uniqueTests) {
+            String status = testStatus.get(testKey);
+            if ("PASS".equals(status)) {
+                passedTests++;
+                totalRetries += retryCount.getOrDefault(testKey, 0);
+            } else if ("FAIL".equals(status)) {
+                failedTests++;
             }
         }
-        
-        // Adjust counts to include retried passes
-        int totalPassedIncludingRetries = finalPassed + retriedPassed;
-        int totalFailedExcludingRetries = finalFailed - retriedPassed;
-        int finalTotal = totalPassedIncludingRetries + totalFailedExcludingRetries + finalSkipped;
         
         // Summary
         writer.println("<div class='summary'>");
         writer.println("<h2>Execution Summary</h2>");
-        writer.println("<p>Total Tests: " + finalTotal + "<br>");
-        writer.println("Passed: " + totalPassedIncludingRetries + " (including " + retriedPassed + " retries)<br>");
-        writer.println("Failed: " + totalFailedExcludingRetries + "<br>");
-        writer.println("Skipped: " + finalSkipped + "<br>");
-        writer.println(String.format("Pass %%: %.2f%%<br>", finalTotal > 0 ? (100.0 * totalPassedIncludingRetries / finalTotal) : 0));
-        writer.println(String.format("Fail %%: %.2f%%<br>", finalTotal > 0 ? (100.0 * totalFailedExcludingRetries / finalTotal) : 0));
-        writer.println(String.format("Skip %%: %.2f%%<br>", finalTotal > 0 ? (100.0 * finalSkipped / finalTotal) : 0));
+        writer.println("<p>Total Tests: " + totalUniqueTests + "<br>");
+        writer.println("Passed: " + passedTests + (totalRetries > 0 ? " (including " + totalRetries + " retries)" : "") + "<br>");
+        writer.println("Failed: " + failedTests + "<br>");
+        writer.println(String.format("Pass %%: %.2f%%<br>", totalUniqueTests > 0 ? (100.0 * passedTests / totalUniqueTests) : 0));
+        writer.println(String.format("Fail %%: %.2f%%<br>", totalUniqueTests > 0 ? (100.0 * failedTests / totalUniqueTests) : 0));
         writer.println("Execution Completed On: " + sdf.format(new Date()));
         writer.println("</p>");
         writer.println("</div>");
